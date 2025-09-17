@@ -1488,8 +1488,8 @@
 
                             <!-- configTemperatureFormat -->
                             <div class="p-2">
-                                <label class="block text-sm font-medium text-gray-900">Формат температуры</label>
-                                <div class="text-xs text-gray-600 mb-2">Показания будут отображены в выбранном формате.</div>
+                                <label class="block text-sm font-medium text-gray-900">Шкала температуры</label>
+                                <div class="text-xs text-gray-600 mb-2">Показания будут отображены в выбранной шкале градусов.</div>
                                 <select v-model="configTemperatureFormat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                     <option value="celsius">Цельсия (°C)</option>
                                     <option value="fahrenheit">Фаренгейта (°F)</option>
@@ -2832,7 +2832,7 @@
         div.innerHTML = `<div style="margin-bottom:6px;"><strong>Легенда</strong></div>`
             + `<div style="display:flex"><div class="icon-mqtt-connected" style="width:12px;height:12px;margin-right:4px;margin-top:auto;margin-bottom:auto;"></div> Подключены к MQTT</div>`
             + `<div style="display:flex"><div class="icon-mqtt-disconnected" style="width:12px;height:12px;margin-right:4px;margin-top:auto;margin-bottom:auto;"></div> Отключены от MQTT</div>`
-            + `<div style="display:flex"><div class="icon-offline" style="width:12px;height:12px;margin-right:4px;margin-top:auto;margin-bottom:auto;"></div> Слишком долго "не в сети"</div>`;
+            + `<div style="display:flex"><div class="icon-offline" style="width:12px;height:12px;margin-right:4px;margin-top:auto;margin-bottom:auto;"></div> Слишком долго не в сети</div>`;
         return div;
     };
 
