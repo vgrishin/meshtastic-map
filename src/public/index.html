@@ -192,7 +192,7 @@
                 <div v-if="!isShowingMobileSearch" class="my-auto leading-tight">
                     <div class="font-bold">Карта Meshtastic</div>
                     <div class="text-sm">
-                        Автор: <a class="link" target="_blank" href="https://liamcottle.com">Liam Cottle</a>. Перевод и доработка: <a class="link" target="_blank" href="https://t.me/vgrishin">Владимир Гришин</a>
+                        By <a class="link" target="_blank" href="https://liamcottle.com">Liam Cottle</a>, перевод и доработка: <a class="link" target="_blank" href="https://t.me/vgrishin">Владимир Гришин</a>
                     </div>
                 </div>
 
@@ -358,9 +358,9 @@
                                 <!-- app info -->
                                 <div class="w-full mx-auto text-center">
                                     <img src="./icon.png" class="mx-auto w-16 h-16 rounded mb-1"/>
-                                    <h1 class="font-bold">Карта Meshtastic</h1>
-                                    <h2>Автор <a class="link" target="_blank" href="https://liamcottle.com">Liam Cottle</a></h2>
-                                    <div class="w-full mx-auto text-center space-x-1 mt-2">
+                                    <h1 class="font-bold">Карта Meshtastic Россия</h1>
+                                    <h2>Автор <a class="link" target="_blank" href="https://liamcottle.com">Liam Cottle</a>, перевод и доработка: <a class="link" target="_blank" href="https://t.me/vgrishin">Владимир Гришин</a></h2>
+                                    <!--<div class="w-full mx-auto text-center space-x-1 mt-2">
 
                                         <a target="_blank" href="https://twitter.com/liamcottle" title="Twitter" class="raise inline-flex items-center p-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-[#1da1f2] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1da1f2]">
                                             <svg role="img" class="w-4 h-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -394,7 +394,7 @@
                                             </svg>
                                         </a>
 
-                                    </div>
+                                    </div>-->
                                 </div>
 
                                 <!-- welcome -->
@@ -409,10 +409,10 @@
                                         <ul class="list-disc list-inside">
                                             <li>На карте отображаются ноды, которые отправили корректную позицию через MQTT.</li>
                                             <li>Пакеты с координатами должны быть незашифрованы, либо зашифрованы ключом по-умолчанию.</li>
-                                            <li>Используйте поиск, чтобы найти ноды по ID или имени.</li>
+                                            <li>Используйте поиск, чтобы найти ноды по их ID или по имени.</li>
                                             <li>Наведите мышкой на ноду (на компьютере), чтобы увидеть основные данные.</li>
                                             <li>Кликните мышкой на ноду, чтобы увидеть дополнительную информацию (телеметрию, графы, трассировки).</li>
-                                            <li>Используйте панель слоев справа вверху, чтобы увидеть соседей и точки маршрута.</li>
+                                            <li>Используйте панель слоев справа вверху, чтобы увидеть соседей и точки маршрута (waypoints).</li>
                                             <li>Используйте кнопку настроек и подстройте карту под себя.</li>
                                             <li>Нашли ошибку или есть идеия? <a class="link" target="_blank" href="https://github.com/vgrishin/meshtastic-map">Добавьте issue</a> на GitHub.</li>
                                         </ul>
@@ -423,56 +423,57 @@
                                 <div>
                                     <div class="font-bold mb-2">FAQ</div>
                                     <div class="space-y-2">
-                                        <div class="bg-gray-100 rounded p-2 border border-gray-200">
-                                            <div class="font-semibold">Как мне добавить моё устройство на карту?</div>
-                                            <div>Ваше устройство, либо устройство, которое вас слышит, должно выгружать данные на наш сервер MQTT.</div>
-                                            <div>Пакеты с координатами должны быть незашифрованы, либо зашифрованы ключом по-умолчанию.</div>
-                                            <div>Если ваше устройство имеет прошивку v2.5 или новее, вам нужно включить "OK to MQTT" в настройках LoRa.</div>
-                                            <div>Для отправки ваших данных на карту, вам нужно подключиться к MQTT серверу с данными ниже.</div>
-                                        </div>
+                                        <ul class="bg-gray-100 rounded p-2 border border-gray-200 list-disc list-inside">
+                                            <li class="font-semibold" style="list-style-type:none;">Как мне добавить моё устройство на карту?</li>
+                                            <li>Ваше устройство, либо устройство, которое вас слышит, должно выгружать данные на наш сервер MQTT.</li>
+                                            <li>Пакеты с координатами должны быть незашифрованы, либо зашифрованы ключом по-умолчанию.</li>
+                                            <li>Если ваше устройство имеет прошивку v2.5 или новее, вам нужно включить "OK to MQTT" в настройках LoRa.</li>
+                                            <li>Для отправки ваших данных на карту, вам нужно подключиться к MQTT серверу с данными ниже.</li>
+                                        </ul>
                                         <div class="bg-gray-100 rounded p-2 border border-gray-200">
                                             <div class="font-semibold">Какой MQTT сервер указать в настройках?</div>
                                             <ul class="list-disc list-inside">
-                                                <li>Адрес: mqtt.meshekb.ru</li>
-                                                <li>Имя пользователя: meshekb</li>
-                                                <li>Пароль: large2cats</li>
+                                                <li>Адрес: <b>mqtt.meshekb.ru</b></li>
+                                                <li>Имя пользователя: <b>meshekb</b></li>
+                                                <li>Пароль: <b>large2cats</b></li>
                                                 <li>Шифрование включено: Да</li>
                                                 <li>Вывод JSON: Нет</li>
                                                 <li>TLS включен: Нет</li>
                                             </ul>
                                             <!--<div>Please note, nodes can only uplink to this server. Downlink is disabled.</div>-->
-                                            <div>Советвуем настраивать только специальные выделенные ноды для загрузки данных на данный сервер (карту).</div>
+                                            <div>Советвуем настраивать только специальные выделенные ноды для загрузки данных на сервер (карту).</div>
                                         </div>
-                                        <div class="bg-gray-100 rounded p-2 border border-gray-200">
-                                            <div class="font-semibold">Как мне убрать моё устройство с карты?</div>
-                                            <div>Устройства, которые не были в сети 7 дней удаляются автоматически.</div>
-                                            <div>Отключите отправку координат на устройстве, чтобы больше не оказаться на карте.</div>
-                                            <div>Используйте индивидуальные ключи шифрования, чтобы никто не мог увидеть ваши данные.</div>
-                                            <div>Если ваше устройство имеет прошивку v2.5 или новее, сервер будет игнорировать ваши данные, если у вас выключена опция "OK to MQTT" в настройках LoRa.</div>
-                                            <div>Для немедленного удаления вашего устройства с карты <a target="_blank" href="mailto:me@vgrishin.me" class="link">напишите мне</a>.</div>
-                                        </div>
+                                        <ul class="bg-gray-100 rounded p-2 border border-gray-200 list-disc list-inside">
+                                            <li class="font-semibold" style="list-style-type:none;">Как мне убрать моё устройство с карты?</li>
+                                            <li>Устройства, которые не были в сети 7 дней удаляются автоматически.</divli
+                                            <li>Отключите отправку координат на устройстве, чтобы больше не оказаться на карте.</li>
+                                            <li>Используйте индивидуальные ключи шифрования, чтобы никто не мог увидеть ваши данные.</li>
+                                            <li>Если ваше устройство имеет прошивку v2.5 или новее, сервер будет игнорировать ваши данные, если у вас выключена опция "OK to MQTT" в настройках LoRa.</li>
+                                            <li>Для немедленного удаления вашего устройства с карты <a target="_blank" href="mailto:me@vgrishin.me" class="link">напишите мне</a>.</li>
+                                        </ul>
                                         <div class="bg-gray-100 rounded p-2 border border-gray-200">
                                             <div class="font-semibold">Как мне увидеть соседей, которые видны моему устройству?</div>
                                             <div>Откройте панель слоев справа вверху и включите показ соседей.</div>
                                             <div>Некоторые соседи получены через MQTT, это исправлено в последней прошивке.</div>
                                         </div>
-                                        <div class="bg-gray-100 rounded p-2 border border-gray-200">
-                                            <div class="font-semibold">Почему моё устройство отображается не на том месте?</div>
-                                            <div>Эта карты округляет ваши координаты (уменьшает точность) для прошивок v2.4 и старее.</div>
-                                            <div>Для устройств с прошивкой v2.4 координаты округляются до двух знаков после запятой.</div>
-                                            <div>Для устройств с прошивкой v2.5 и новее, с включенной опцией "OK to MQTT", будет показана позиция с точностью, выбранной вами в настройках (precision).</div>
-                                            <div>Для устройств с прошивкой v2.5 и новее, с выключенной опцией "OK to MQTT", позиция показана не будет.</div>
-                                        </div>
+                                        <ul class="bg-gray-100 rounded p-2 border border-gray-200 list-disc list-inside">
+                                            <li class="font-semibold" style="list-style-type:none;">Почему моё устройство отображается не на том месте?</li>
+                                            <li>Эта карта "округляет"" ваши координаты (уменьшает точность) для прошивок v2.4 и старее.</li>
+                                            <li>Для устройств с прошивкой v2.4 координаты округляются до двух знаков после запятой.</li>
+                                            <li>Для устройств с прошивкой v2.5 и новее, с включенной опцией "OK to MQTT", будет показана позиция с точностью, выбранной вами в настройках (precision).</li>
+                                            <li>Для устройств с прошивкой v2.5 и новее, с выключенной опцией "OK to MQTT", позиция показана не будет.</li>
+                                        </ul>
                                     </div>
                                 </div>
 
                                 <!-- legal -->
                                 <div>
-                                    <div class="font-bold mb-2">Legal</div>
+                                    <div class="font-bold mb-2">Юридическая информация</div>
                                     <div class="bg-gray-100 rounded p-2 border border-gray-200">
                                         <div>Этот проект не связан и не одобрен проектом <a class="link" target="_blank" href="https://meshtastic.org">Meshtastic</a>.</div>
                                         <div>Логотип Meshtastic является товарным знаком Meshtastic LLC.</div>
                                         <div>Карта предоставлена <a class="link" target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a></div>
+                                        <div>Код был форкнут отсюда: <a class="link" target="_blank" href="https://github.com/liamcottle/meshtastic-map">github.com/liamcottle/meshtastic-map</a></div>
                                     </div>
                                 </div>
 
@@ -480,7 +481,7 @@
                                 <div class="mx-auto">
                                     <a href="javascript:void(0)" @click="dismissInfoModal">
                                         <div class="bg-gray-200 hover:bg-gray-300 px-6 py-2 rounded-md shadow">
-                                            Отклонить
+                                            Закрыть
                                         </div>
                                     </a>
                                 </div>
@@ -712,7 +713,7 @@
 
                                     <!-- hardware -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Модель устройства</div>
+                                        <div class="text-sm font-medium text-gray-900">Модель оборудования</div>
                                         <div class="ml-auto text-sm text-gray-700">{{ selectedNode.hardware_model_name }}</div>
                                     </li>
 
@@ -753,7 +754,7 @@
 
                                     <!-- has default channel -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Есть канал по-умолчанию/div>
+                                        <div class="text-sm font-medium text-gray-900">Есть канал по-умолчанию</div>
                                         <div class="ml-auto text-sm text-gray-700">
                                             <span v-if="selectedNode.has_default_channel != null">{{ selectedNode.has_default_channel ? "Yes" : "No" }}</span>
                                             <span v-else>???</span>
@@ -1123,7 +1124,7 @@
 
                                     <!-- last seen -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Видели последний раз</div>
+                                        <div class="text-sm font-medium text-gray-900">Появлялся последний раз</div>
                                         <div class="ml-auto text-sm text-gray-700">{{ moment(new Date(selectedNode.updated_at)).fromNow() }}</div>
                                     </li>
 
@@ -2853,17 +2854,17 @@
 
     // add layers to control ui
     L.control.groupedLayers(tileLayers, {
-        "Nodes": {
-            "All": nodesLayerGroup,
-            "Routers": nodesRouterLayerGroup,
-            "Clustered": nodesClusteredLayerGroup,
-            "None": new L.LayerGroup(),
+        "Ноды": {
+            "Все": nodesLayerGroup,
+            "Роутеры": nodesRouterLayerGroup,
+            "Кластеризованные": nodesClusteredLayerGroup,
+            "Никакие": new L.LayerGroup(),
         },
-        "Overlays": {
-            "Legend": legendLayerGroup,
-            "Neighbours": neighboursLayerGroup,
-            "Waypoints": waypointsLayerGroup,
-            "Position History": nodePositionHistoryLayerGroup,
+        "Наложение": {
+            "Легенда": legendLayerGroup,
+            "Соседи": neighboursLayerGroup,
+            "Точки маршрута": waypointsLayerGroup,
+            "История местоположения": nodePositionHistoryLayerGroup,
         },
     }, {
         // make the "Nodes" group exclusive (use radio inputs instead of checkbox)
