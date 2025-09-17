@@ -2743,7 +2743,7 @@
     // remove leaflet link
     map.attributionControl.setPrefix('');
 
-    var yandexTileLayer = L.tileLayer('https://tiles.api-maps.yandex.ru/v1/tiles/?apikey=3ce95668-6b52-484c-a653-06cd0113b60b&lang=ru_RU&x={y}&y={x}&z={z}&l=map&scale=1.0&projection=wgs84_mercator&maptype=map', {
+    var yandexTileLayer = L.tileLayer('https://tiles.api-maps.yandex.ru/v1/tiles/?apikey=3ce95668-6b52-484c-a653-06cd0113b60b&lang=ru_RU&x={x}&y={y}&z={z}&l=map&scale=1.0&projection=web_mercator&maptype=map', {
         maxZoom: 21,
         attribution: '<div style="width: 176px;height: 96px;position: absolute;bottom: 20px;right: 10px;"><a href="https://yandex.ru/maps" target="_blank"><img width="176" heigth="96" src="/images/yndex_logo_ru.png"></a></div>Карта &copy; <a href="https://yandex.ru/maps" target="_blank">Яндекс Карты</a> | Данные <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic</a>'
     });
