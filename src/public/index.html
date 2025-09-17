@@ -2737,13 +2737,19 @@
         [100, 500], // bottom right
     ];
 
-    // create map positioned over AU and NZ
+    // create map positioned over Yekaterinburg, Russia
     var map = L.map('map', {
         maxBounds: bounds,
     }).setView([
+        56.7003587528278,
+        420.9480285644532
+    ], 10);
+
+    //positioned over AU and NZ
+    /*.setView([
         -15,
         150,
-    ], 2);
+    ], 2);*/
 
     // remove leaflet link
     map.attributionControl.setPrefix('');
