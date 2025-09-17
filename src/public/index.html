@@ -190,9 +190,9 @@
 
                 <!-- app info -->
                 <div v-if="!isShowingMobileSearch" class="my-auto leading-tight">
-                    <div class="font-bold">Карта Meshtastic</div>
+                    <div class="font-bold">Карта Meshtastic Россия / Екатеринбург</div>
                     <div class="text-sm">
-                        By <a class="link" target="_blank" href="https://liamcottle.com">Liam Cottle</a>, перевод и доработка: <a class="link" target="_blank" href="https://t.me/vgrishin">Владимир Гришин</a>
+                        <a class="link" target="_blank" href="https://liamcottle.com">Liam Cottle</a>, перевод и доработка: <a class="link" target="_blank" href="https://t.me/vgrishin">Владимир Гришин</a>
                     </div>
                 </div>
 
@@ -359,7 +359,7 @@
                                 <div class="w-full mx-auto text-center">
                                     <img src="./icon.png" class="mx-auto w-16 h-16 rounded mb-1"/>
                                     <h1 class="font-bold">Карта Meshtastic Россия</h1>
-                                    <h2>Автор <a class="link" target="_blank" href="https://liamcottle.com">Liam Cottle</a>, перевод и доработка: <a class="link" target="_blank" href="https://t.me/vgrishin">Владимир Гришин</a></h2>
+                                    <h2>Автор: <a class="link" target="_blank" href="https://liamcottle.com">Liam Cottle</a>, перевод и доработка: <a class="link" target="_blank" href="https://t.me/vgrishin">Владимир Гришин</a></h2>
                                     <!--<div class="w-full mx-auto text-center space-x-1 mt-2">
 
                                         <a target="_blank" href="https://twitter.com/liamcottle" title="Twitter" class="raise inline-flex items-center p-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-[#1da1f2] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1da1f2]">
@@ -472,7 +472,7 @@
                                     <div class="bg-gray-100 rounded p-2 border border-gray-200">
                                         <div>Этот проект не связан и не одобрен проектом <a class="link" target="_blank" href="https://meshtastic.org">Meshtastic</a>.</div>
                                         <div>Логотип Meshtastic является товарным знаком Meshtastic LLC.</div>
-                                        <div>Карта предоставлена <a class="link" target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a></div>
+                                        <div>Карта предоставлена <a class="link" target="_blank" href="https://yandex.ru/maps">Яндекс Карты</a><!--<a class="link" target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>--></div>
                                         <div>Код был форкнут отсюда: <a class="link" target="_blank" href="https://github.com/liamcottle/meshtastic-map">github.com/liamcottle/meshtastic-map</a></div>
                                     </div>
                                 </div>
@@ -1545,8 +1545,8 @@
                             <div class="flex items-start justify-between">
                                 <div>
                                     <h2 class="font-bold">{{ selectedNodeToShowNeighbours.short_name }} - соседи</h2>
-                                    <h3 v-if="selectedNodeToShowNeighboursType === 'we_heard'" class="text-sm">Мы слышали {{ selectedNodeToShowNeighbours.short_name }}</h3>
-                                    <h3 v-if="selectedNodeToShowNeighboursType === 'heard_us'" class="text-sm">Слышали нас {{ selectedNodeToShowNeighbours.short_name }}</h3>
+                                    <h3 v-if="selectedNodeToShowNeighboursType === 'we_heard'" class="text-sm">Нода слышала {{ selectedNodeToShowNeighbours.short_name }}</h3>
+                                    <h3 v-if="selectedNodeToShowNeighboursType === 'heard_us'" class="text-sm">Слышали ноду {{ selectedNodeToShowNeighbours.short_name }}</h3>
                                 </div>
                                 <div class="my-auto ml-3 flex h-7 items-center">
                                     <a href="javascript:void(0)" class="rounded-full" @click="dismissShowingNodeNeighbours">
@@ -2743,34 +2743,40 @@
     // remove leaflet link
     map.attributionControl.setPrefix('');
 
+    var yandexTileLayer = L.tileLayer('https://tiles.api-maps.yandex.ru/v1/tiles/?apikey=3ce95668-6b52-484c-a653-06cd0113b60b&lang=ru_RU&x={x}&y={y}&z={z}&l=map&scale=1.0&projection=wgs84_mercator&maptype=map', {
+        maxZoom: 21,
+        attribution: 'Карта &copy; <a href="https://yandex.ru/maps" target="_blank">Яндекс Карты</a> | Данные <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic</a>'
+    });
+
     var openStreetMapTileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 22, // increase from 18 to 22
-        attribution: 'Tiles &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | Data from <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic</a>',
+        attribution: 'Карта &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | Данные <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic</a>',
     });
 
     var openTopoMapTileLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
         maxZoom: 17, // open topo map doesn't have tiles closer than this
-        attribution: 'Tiles &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        attribution: 'Карта &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     });
 
     var esriWorldImageryTileLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         maxZoom: 21, // esri doesn't have tiles closer than this
-        attribution: 'Tiles &copy; <a href="https://developers.arcgis.com/documentation/mapping-apis-and-services/deployment/basemap-attribution/">Esri</a> | Data from <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic</a>'
+        attribution: 'Карта &copy; <a href="https://developers.arcgis.com/documentation/mapping-apis-and-services/deployment/basemap-attribution/">Esri</a> | Данные <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic</a>'
     });
 
     var googleSatelliteTileLayer = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
         maxZoom: 21,
         subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-        attribution: 'Tiles &copy; Google | Data from <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic</a>'
+        attribution: 'Карта &copy; Google | Данные <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic</a>'
     });
 
     var googleHybridTileLayer = L.tileLayer('https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
         maxZoom: 21,
         subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-        attribution: 'Tiles &copy; Google | Data from <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic</a>'
+        attribution: 'Карта &copy; Google | Данные <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic</a>'
     });
 
     var tileLayers = {
+        "YandexMap": yandexTileLayer,
         "OpenStreetMap": openStreetMapTileLayer,
         "OpenTopoMap": openTopoMapTileLayer,
         "Esri Satellite": esriWorldImageryTileLayer,
@@ -3988,8 +3994,8 @@
 
         // show details button
         tooltip += `<br/><br/><button onclick="showNodeDetails(${node.node_id});" class="border border-gray-300 bg-gray-100 p-1 w-full rounded hover:bg-gray-200 mb-1">Показать подробности</button>`;
-        tooltip += `<br/><button onclick="showNodeNeighboursThatHeardUs(${node.node_id});" class="border border-gray-300 bg-gray-100 p-1 w-full rounded hover:bg-gray-200 mb-1">Показать соседей (слышали нас)</button>`;
-        tooltip += `<br/><button onclick="showNodeNeighboursThatWeHeard(${node.node_id});" class="border border-gray-300 bg-gray-100 p-1 w-full rounded hover:bg-gray-200">Показать соседей (мы слышали)</button>`;
+        tooltip += `<br/><button onclick="showNodeNeighboursThatHeardUs(${node.node_id});" class="border border-gray-300 bg-gray-100 p-1 w-full rounded hover:bg-gray-200 mb-1">Показать соседей (слышали ноду)</button>`;
+        tooltip += `<br/><button onclick="showNodeNeighboursThatWeHeard(${node.node_id});" class="border border-gray-300 bg-gray-100 p-1 w-full rounded hover:bg-gray-200">Показать соседей (нода слышала)</button>`;
         tooltip += `</div>`;
 
         return tooltip;
