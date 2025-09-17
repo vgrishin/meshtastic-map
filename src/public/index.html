@@ -136,6 +136,11 @@
             z-index: 1002;
         }
 
+        @media only all and (max-width: 1024px) {
+          .hide-1024  {
+            display: none;
+          }
+        }
     </style>
 
 </head>
@@ -190,9 +195,9 @@
 
                 <!-- app info -->
                 <div v-if="!isShowingMobileSearch" class="my-auto leading-tight">
-                    <div class="font-bold">Карта Meshtastic Россия / Екатеринбург</div>
+                    <div class="font-bold">Карта Meshtastic<span class="hide-1024"> Россия / Екатеринбург</span></div>
                     <div class="text-sm">
-                        <a class="link" target="_blank" href="https://liamcottle.com">Liam Cottle</a>, перевод и доработка: <a class="link" target="_blank" href="https://t.me/vgrishin">Владимир Гришин</a>
+                        <a class="link" target="_blank" href="https://liamcottle.com">Liam Cottle</a>, <span class="hide-1024">перевод и доработка: </span><a class="link" target="_blank" href="https://t.me/vgrishin">Владимир Гришин</a>
                     </div>
                 </div>
 
@@ -1692,7 +1697,7 @@
     }
 
     function getConfigMapSelectedTileLayer() {
-        return localStorage.getItem("config_map_selected_tile_layer") || "OpenStreetMap";
+        return localStorage.getItem("config_map_selected_tile_layer") || "Яндекс Карты";
     }
 
     function setConfigMapSelectedTileLayer(layer) {
@@ -2745,7 +2750,7 @@
 
     var yandexTileLayer = L.tileLayer('https://tiles.api-maps.yandex.ru/v1/tiles/?apikey=3ce95668-6b52-484c-a653-06cd0113b60b&lang=ru_RU&x={x}&y={y}&z={z}&l=map&scale=1.0&projection=web_mercator&maptype=map', {
         maxZoom: 21,
-        attribution: '<div style="width: 176px;height: 96px;position: absolute;bottom: 20px;right: 10px;"><a href="https://yandex.ru/maps" target="_blank"><img width="176" heigth="96" src="/images/yndex_logo_ru.png"></a></div>Карта &copy; <a href="https://yandex.ru/maps" target="_blank">Яндекс Карты</a> | Данные <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic</a>'
+        attribution: '<div style="width: 176px;height: 96px;position: absolute;bottom: 20px;right: 0px;"><a href="https://yandex.ru/maps" target="_blank"><img width="176" heigth="96" src="/images/yndex_logo_ru.png"></a></div>Карта &copy; <a href="https://yandex.ru/maps" target="_blank">Яндекс Карты</a> | Данные <a target="_blank" href="https://meshtastic.org/docs/software/integrations/mqtt/">Meshtastic</a>'
     });
 
     var openStreetMapTileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -2786,7 +2791,7 @@
 
     // use tile layer based on config
     const selectedTileLayerName = getConfigMapSelectedTileLayer();
-    const selectedTileLayer = tileLayers[selectedTileLayerName] || openStreetMapTileLayer;
+    const selectedTileLayer = tileLayers[selectedTileLayerName] || yandexTileLayer; // openStreetMapTileLayer
     selectedTileLayer.addTo(map);
 
     // create layer groups
