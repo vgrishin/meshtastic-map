@@ -14,12 +14,12 @@ const optionsList = [
         name: 'help',
         alias: 'h',
         type: Boolean,
-        description: 'Display this usage guide.'
+        description: 'Показать инструкцию.'
     },
     {
         name: "purge-node-id",
         type: String,
-        description: "Purges all records for the provided node id.",
+        description: "Удалить все записи для указанного ID ноды.",
     },
 ];
 
@@ -30,11 +30,11 @@ const options = commandLineArgs(optionsList);
 if(options.help){
     const usage = commandLineUsage([
         {
-            header: 'Meshtastic Map Admin',
-            content: 'Command line admin tool for the Meshtastic Map',
+            header: 'Администрирование Карты Meshtastic',
+            content: 'Утилита командной строки для администрирования карты Meshtastic',
         },
         {
-            header: 'Options',
+            header: 'Настройки',
             optionList: optionsList,
         },
     ]);

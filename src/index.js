@@ -19,12 +19,12 @@ const optionsList = [
         name: 'help',
         alias: 'h',
         type: Boolean,
-        description: 'Display this usage guide.'
+        description: 'Показать инструкцию.'
     },
     {
         name: "port",
         type: Number,
-        description: "Port to serve web ui and api from.",
+        description: "Порт для работы Web UI и API.",
     },
 ];
 
@@ -35,11 +35,11 @@ const options = commandLineArgs(optionsList);
 if(options.help){
     const usage = commandLineUsage([
         {
-            header: 'Meshtastic Map',
-            content: 'A map of all Meshtastic nodes heard via MQTT.',
+            header: 'Карта Meshtastic',
+            content: 'Карта всех нод Meshtastic, полученных через MQTT.',
         },
         {
-            header: 'Options',
+            header: 'Настройки',
             optionList: optionsList,
         },
     ]);
@@ -85,87 +85,87 @@ app.get('/api', async (req, res) => {
     const links = [
         {
             "path": "/api",
-            "description": "This page",
+            "description": "Эта страница",
         },
         {
             "path": "/api/v1/nodes",
-            "description": "All meshtastic nodes",
+            "description": "Все ноды meshtastic",
             "params": {
-                "role": "Filter by role",
-                "hardware_model": "Filter by hardware model",
+                "role": "Фильтровать по роли",
+                "hardware_model": "Фильтровать по модели оборудования",
             },
         },
         {
             "path": "/api/v1/nodes/:nodeId",
-            "description": "A specific meshtastic node",
+            "description": "Конкретная нода",
         },
         {
             "path": "/api/v1/nodes/:nodeId/device-metrics",
-            "description": "Device metrics for a meshtastic node",
+            "description": "Метрики устройства ноды meshtastic",
             "params": {
-                "count": "How many results to return",
-                "time_from": "Only include metrics created after this unix timestamp (milliseconds)",
-                "time_to": "Only include metrics created before this unix timestamp (milliseconds)",
+                "count": "Какое количество вернуть",
+                "time_from": "Вернуть только метрики созданные после этого времени timestamp (milliseconds)",
+                "time_to": "Вернуть только метрики созданные до этого времени timestamp (milliseconds)",
             },
         },
         {
             "path": "/api/v1/nodes/:nodeId/environment-metrics",
-            "description": "Environment metrics for a meshtastic node",
+            "description": "Метрики окружения для указанной ноды meshtastic",
             "params": {
-                "count": "How many results to return",
-                "time_from": "Only include metrics created after this unix timestamp (milliseconds)",
-                "time_to": "Only include metrics created before this unix timestamp (milliseconds)",
+                "count": "Какое количество вернуть",
+                "time_from": "Вернуть только метрики созданные после этого времени timestamp (milliseconds)",
+                "time_to": "Вернуть только метрики созданные до этого времени timestamp (milliseconds)",
             },
         },
         {
             "path": "/api/v1/nodes/:nodeId/power-metrics",
-            "description": "Power metrics for a meshtastic node",
+            "description": "Метрики питания для указанной ноды meshtastic",
             "params": {
-                "count": "How many results to return",
-                "time_from": "Only include metrics created after this unix timestamp (milliseconds)",
-                "time_to": "Only include metrics created before this unix timestamp (milliseconds)",
+                "count": "Какое количество вернуть",
+                "time_from": "Вернуть только метрики созданные после этого времени timestamp (milliseconds)",
+                "time_to": "Вернуть только метрики созданные до этого времени timestamp (milliseconds)",
             },
         },
         {
             "path": "/api/v1/nodes/:nodeId/neighbours",
-            "description": "Neighbours for a meshtastic node",
+            "description": "Соседи для указанной ноды meshtastic",
         },
         {
             "path": "/api/v1/nodes/:nodeId/traceroutes",
-            "description": "Trace routes for a meshtastic node",
+            "description": "Трассировки для указанной ноды meshtastic",
         },
         {
             "path": "/api/v1/nodes/:nodeId/position-history",
-            "description": "Position history for a meshtastic node",
+            "description": "История позиций для указанной ноды meshtastic",
             "params": {
-                "time_from": "Only include positions created after this unix timestamp (milliseconds)",
-                "time_to": "Only include positions created before this unix timestamp (milliseconds)",
+                "time_from": "Вернуть только позиции созданные после этого времени timestamp (milliseconds)",
+                "time_to": "Вернуть только позиции созданные до этого времени timestamp (milliseconds)",
             },
         },
         {
             "path": "/api/v1/stats/hardware-models",
-            "description": "Database statistics about known hardware models",
+            "description": "Статистика об известных моделях оборудования",
         },
         {
             "path": "/api/v1/text-messages",
-            "description": "Text messages",
+            "description": "Текстовые сообщения",
             "params": {
-                "to": "Only include messages to this node id",
-                "from": "Only include messages from this node id",
-                "channel_id": "Only include messages for this channel id",
-                "gateway_id": "Only include messages gated to mqtt by this node id",
-                "last_id": "Only include messages before or after this id, based on results order",
-                "count": "How many results to return",
-                "order": "Order to return results in: asc, desc",
+                "to": "Только сообщения для ноды с этим id",
+                "from": "Только сообщения от ноды с этим id",
+                "channel_id": "Только сообщения для канала с этим id",
+                "gateway_id": "Только сообщения, направленные по mqtt указанной нодой с этим id",
+                "last_id": "Вернуть сообщения до или после этого id, в зависимости от сортировки",
+                "count": "Какое количество вернуть",
+                "order": "Сортировка результата: asc, desc",
             },
         },
         {
             "path": "/api/v1/text-messages/embed",
-            "description": "Text messages rendered as an embeddable HTML page.",
+            "description": "Это сообщение отображено как встроенная HTML-страница.",
         },
         {
             "path": "/api/v1/waypoints",
-            "description": "Waypoints",
+            "description": "Точки маршрута (waypoints)",
         },
     ];
 
@@ -214,7 +214,7 @@ app.get('/api/v1/nodes', async (req, res) => {
     } catch(err) {
         console.error(err);
         res.status(500).json({
-            message: "Something went wrong, try again later.",
+            message: "Что-то пошло не так, попробуйте еще раз позже.",
         });
     }
 });
@@ -234,7 +234,7 @@ app.get('/api/v1/nodes/:nodeId', async (req, res) => {
         // make sure node exists
         if(!node){
             res.status(404).json({
-                message: "Not Found",
+                message: "Не найдено",
             });
             return;
         }
@@ -246,7 +246,7 @@ app.get('/api/v1/nodes/:nodeId', async (req, res) => {
     } catch(err) {
         console.error(err);
         res.status(500).json({
-            message: "Something went wrong, try again later.",
+            message: "Что-то пошло не так, попробуйте еще раз позже.",
         });
     }
 });
@@ -269,7 +269,7 @@ app.get('/api/v1/nodes/:nodeId/device-metrics', async (req, res) => {
         // make sure node exists
         if(!node){
             res.status(404).json({
-                message: "Not Found",
+                message: "Не найдено",
             });
             return;
         }
@@ -296,7 +296,7 @@ app.get('/api/v1/nodes/:nodeId/device-metrics', async (req, res) => {
     } catch(err) {
         console.error(err);
         res.status(500).json({
-            message: "Something went wrong, try again later.",
+            message: "Что-то пошло не так, попробуйте еще раз позже.",
         });
     }
 });
@@ -319,7 +319,7 @@ app.get('/api/v1/nodes/:nodeId/environment-metrics', async (req, res) => {
         // make sure node exists
         if(!node){
             res.status(404).json({
-                message: "Not Found",
+                message: "Не найдено",
             });
             return;
         }
@@ -346,7 +346,7 @@ app.get('/api/v1/nodes/:nodeId/environment-metrics', async (req, res) => {
     } catch(err) {
         console.error(err);
         res.status(500).json({
-            message: "Something went wrong, try again later.",
+            message: "Что-то пошло не так, попробуйте еще раз позже.",
         });
     }
 });
@@ -369,7 +369,7 @@ app.get('/api/v1/nodes/:nodeId/power-metrics', async (req, res) => {
         // make sure node exists
         if(!node){
             res.status(404).json({
-                message: "Not Found",
+                message: "Не найдено",
             });
             return;
         }
@@ -396,7 +396,7 @@ app.get('/api/v1/nodes/:nodeId/power-metrics', async (req, res) => {
     } catch(err) {
         console.error(err);
         res.status(500).json({
-            message: "Something went wrong, try again later.",
+            message: "Что-то пошло не так, попробуйте еще раз позже.",
         });
     }
 });
@@ -416,7 +416,7 @@ app.get('/api/v1/nodes/:nodeId/mqtt-metrics', async (req, res) => {
         // make sure node exists
         if(!node){
             res.status(404).json({
-                message: "Not Found",
+                message: "Не найдено",
             });
             return;
         }
@@ -431,7 +431,7 @@ app.get('/api/v1/nodes/:nodeId/mqtt-metrics', async (req, res) => {
     } catch(err) {
         console.error(err);
         res.status(500).json({
-            message: "Something went wrong, try again later.",
+            message: "Что-то пошло не так, попробуйте еще раз позже.",
         });
     }
 });
@@ -451,7 +451,7 @@ app.get('/api/v1/nodes/:nodeId/neighbours', async (req, res) => {
         // make sure node exists
         if(!node){
             res.status(404).json({
-                message: "Not Found",
+                message: "Не найдено",
             });
             return;
         }
@@ -487,7 +487,7 @@ app.get('/api/v1/nodes/:nodeId/neighbours', async (req, res) => {
     } catch(err) {
         console.error(err);
         res.status(500).json({
-            message: "Something went wrong, try again later.",
+            message: "Что-то пошло не так, попробуйте еще раз позже.",
         });
     }
 });
@@ -508,7 +508,7 @@ app.get('/api/v1/nodes/:nodeId/traceroutes', async (req, res) => {
         // make sure node exists
         if(!node){
             res.status(404).json({
-                message: "Not Found",
+                message: "Не найдено",
             });
             return;
         }
@@ -549,7 +549,7 @@ app.get('/api/v1/nodes/:nodeId/traceroutes', async (req, res) => {
     } catch(err) {
         console.error(err);
         res.status(500).json({
-            message: "Something went wrong, try again later.",
+            message: "Что-то пошло не так, попробуйте еще раз позже.",
         });
     }
 });
@@ -576,7 +576,7 @@ app.get('/api/v1/nodes/:nodeId/position-history', async (req, res) => {
         // make sure node exists
         if(!node){
             res.status(404).json({
-                message: "Not Found",
+                message: "Не найдено",
             });
             return;
         }
@@ -638,7 +638,7 @@ app.get('/api/v1/nodes/:nodeId/position-history', async (req, res) => {
     } catch(err) {
         console.error(err);
         res.status(500).json({
-            message: "Something went wrong, try again later.",
+            message: "Что-то пошло не так, попробуйте еще раз позже.",
         });
     }
 });
@@ -674,7 +674,7 @@ app.get('/api/v1/stats/hardware-models', async (req, res) => {
     } catch(err) {
         console.error(err);
         res.status(500).json({
-            message: "Something went wrong, try again later.",
+            message: "Что-то пошло не так, попробуйте еще раз позже.",
         });
     }
 });
@@ -695,7 +695,7 @@ app.get('/api/v1/text-messages', async (req, res) => {
         // if direct message node ids are provided, there should be exactly two node ids
         if(directMessageNodeIds !== undefined && directMessageNodeIds.length !== 2){
             res.status(400).json({
-                message: "direct_message_node_ids requires 2 node ids separated by a comma.",
+                message: "direct_message_node_ids требует 2 id нод, разделенные запятой.",
             });
             return;
         }
@@ -754,7 +754,7 @@ app.get('/api/v1/text-messages', async (req, res) => {
 
     } catch(err) {
         res.status(500).json({
-            message: "Something went wrong, try again later.",
+            message: "Что-то пошло не так, попробуйте еще раз позже.",
         });
     }
 });
@@ -800,7 +800,7 @@ app.get('/api/v1/waypoints', async (req, res) => {
 
     } catch(err) {
         res.status(500).json({
-            message: "Something went wrong, try again later.",
+            message: "Что-то пошло не так, попробуйте еще раз позже.",
         });
     }
 });

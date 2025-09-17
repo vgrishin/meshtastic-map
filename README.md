@@ -1,4 +1,4 @@
-<h2 align="center">Meshtastic Map</h2>
+<h2 align="center">Карта Meshtastic</h2>
 
 <p align="center">
 <a href="https://discord.gg/K55zeZyHKK"><img src="https://img.shields.io/badge/Discord-Liam%20Cottle's%20Discord-%237289DA?style=flat&logo=discord" alt="discord"/></a>

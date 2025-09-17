@@ -3,16 +3,16 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Meshtastic Map</title>
-    <meta name="title" content="Meshtastic Map">
-    <meta name="description" content="An interactive map of all Meshtastic nodes.">
+    <title>Карта Meshtastic</title>
+    <meta name="title" content="Карта Meshtastic">
+    <meta name="description" content="Интерактивная карта узлов (нод) сети Meshtastic в России.">
     <link rel="icon" type="image/png" href="/icon.png"/>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://meshtastic.liamcottle.net">
-    <meta property="og:title" content="Meshtastic Map">
-    <meta property="og:description" content="An interactive map of all Meshtastic nodes.">
+    <meta property="og:url" content="https://map.meshekb.ru">
+    <meta property="og:title" content="Карта Meshtastic">
+    <meta property="og:description" content="Интерактивная карта узлов (нод) сети Meshtastic в России.">
 
     <!-- tailwind css -->
     <script src="assets/js/tailwindcss/tailwind-v3.4.3-forms-v0.5.7.js"></script>
@@ -149,12 +149,12 @@
             <div v-if="isShowingAnnouncement" class="flex bg-gray-900 text-white p-2 border-gray-300 border-b">
 
                 <!-- info -->
-                <div class="my-auto leading-tight">
+                <!--<div class="my-auto leading-tight">
                     <div class="font-bold">Introducing MeshCore</div>
                     <div class="text-sm">
                         <span>Looking for a new mesh project to tinker with? Check out <a target="_blank" href="https://meshcore.nz" class="underline">MeshCore</a></span>
                     </div>
-                </div>
+                </div>-->
 
                 <!-- action buttons -->
                 <div class="flex my-auto ml-auto mr-0 sm:mr-2">
@@ -190,15 +190,15 @@
 
                 <!-- app info -->
                 <div v-if="!isShowingMobileSearch" class="my-auto leading-tight">
-                    <div class="font-bold">Meshtastic Map</div>
+                    <div class="font-bold">Карта Meshtastic</div>
                     <div class="text-sm">
-                        Created by <a class="link" target="_blank" href="https://liamcottle.com">Liam Cottle</a>
+                        Автор: <a class="link" target="_blank" href="https://liamcottle.com">Liam Cottle</a>. Перевод и доработка: <a class="link" target="_blank" href="https://t.me/vgrishin">Владимир Гришин</a>
                     </div>
                 </div>
 
                 <!-- search bar -->
                 <div class="mx-3 flex-1 relative" :class="{ 'hidden lg:block': !isShowingMobileSearch }">
-                    <input v-model="searchText" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" :placeholder="`Search ${nodes.length} nodes...`">
+                    <input v-model="searchText" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" :placeholder="`Поиск среди ${nodes.length} нод...`">
                     <div v-if="searchText !== ''" class="absolute z-search bg-white w-full border border-gray-200 rounded-lg shadow-md mt-1 overflow-y-scroll max-h-80 divide-y divide-gray-200">
 
                         <template v-if="searchedNodes.length > 0">
@@ -216,13 +216,13 @@
                                 </div>
                             </div>
                             <div v-if="searchedNodes.length === 500" class="text-gray-500 text-sm px-2 py-1">
-                                Only the first 500 results are shown.
+                                Показаны только первые 500 результатов.
                             </div>
                         </template>
 
                         <template v-else>
                             <div class="p-2">
-                                No results found...
+                                Ничего не найдено...
                             </div>
                         </template>
 
@@ -238,7 +238,7 @@
                             </svg>
                         </div>
                         <div class="hidden sm:block">
-                            <span class="tooltip-text">About</span>
+                            <span class="tooltip-text">Описание</span>
                         </div>
                     </a>
                     <a @click="isShowingMobileSearch = true" href="javascript:void(0)" class="tooltip rounded-full block lg:hidden">
@@ -250,7 +250,7 @@
                             </svg>
                         </div>
                         <div class="hidden sm:block">
-                            <span class="tooltip-text">Search</span>
+                            <span class="tooltip-text">Поиск</span>
                         </div>
                     </a>
                     <a @click="isShowingHardwareModels = !isShowingHardwareModels" href="javascript:void(0)" class="tooltip rounded-full hidden sm:block">
@@ -260,7 +260,7 @@
                             </svg>
                         </div>
                         <div class="hidden sm:block">
-                            <span class="tooltip-text">Devices</span>
+                            <span class="tooltip-text">Устройства</span>
                         </div>
                     </a>
                     <a href="#" class="tooltip rounded-full hidden lg:block" onclick="goToRandomNode()">
@@ -274,7 +274,7 @@
                             </svg>
                         </div>
                         <div class="hidden sm:block">
-                            <span class="tooltip-text">Random</span>
+                            <span class="tooltip-text">Случайная нода</span>
                         </div>
                     </a>
                     <a @click="isShowingSettings = true" href="javascript:void(0)" class="tooltip rounded-full">
@@ -285,7 +285,7 @@
                             </svg>
                         </div>
                         <div class="hidden sm:block">
-                            <span class="tooltip-text">Settings</span>
+                            <span class="tooltip-text">Настройки</span>
                         </div>
                     </a>
                     <a href="#" class="tooltip rounded-full" onclick="reload()">
@@ -297,7 +297,7 @@
                             </svg>
                         </div>
                         <div class="hidden sm:block">
-                            <span class="tooltip-text">Reload</span>
+                            <span class="tooltip-text">Обновить</span>
                         </div>
                     </a>
                 </div>
@@ -358,8 +358,8 @@
                                 <!-- app info -->
                                 <div class="w-full mx-auto text-center">
                                     <img src="./icon.png" class="mx-auto w-16 h-16 rounded mb-1"/>
-                                    <h1 class="font-bold">Meshtastic Map</h1>
-                                    <h2>Created by <a class="link" target="_blank" href="https://liamcottle.com">Liam Cottle</a></h2>
+                                    <h1 class="font-bold">Карта Meshtastic</h1>
+                                    <h2>Автор <a class="link" target="_blank" href="https://liamcottle.com">Liam Cottle</a></h2>
                                     <div class="w-full mx-auto text-center space-x-1 mt-2">
 
                                         <a target="_blank" href="https://twitter.com/liamcottle" title="Twitter" class="raise inline-flex items-center p-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-[#1da1f2] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1da1f2]">
@@ -399,22 +399,22 @@
 
                                 <!-- welcome -->
                                 <div class="bg-green-100 rounded p-2 border border-green-200">
-                                    👋 Welcome to my open source map of Meshtastic nodes heard on MQTT.
+                                    👋 Добро пожаловать на open source карту узлов (нод) сети Meshtastic (через MQTT).
                                 </div>
 
                                 <!-- features -->
                                 <div>
-                                    <div class="font-bold mb-2">Features</div>
+                                    <div class="font-bold mb-2">Возможности</div>
                                     <div class="bg-gray-100 rounded p-2 border border-gray-200">
                                         <ul class="list-disc list-inside">
-                                            <li>The map shows nodes that have sent a valid position to MQTT.</li>
-                                            <li>Position packets must be unencrypted, or encrypted with the default key.</li>
-                                            <li>Use the search bar to find nodes by ID or name.</li>
-                                            <li>Hover over nodes (on desktop) to see basic details.</li>
-                                            <li>Click a node to see info such as telemetry graphs and traceroutes.</li>
-                                            <li>Use the top right layers panel to show neighbours and waypoints.</li>
-                                            <li>Use the settings button to configure the map to your liking.</li>
-                                            <li>Have a feature request, or found a bug? <a class="link" target="_blank" href="https://github.com/liamcottle/meshtastic-map">Open an issue</a> on GitHub.</li>
+                                            <li>На карте отображаются ноды, которые отправили корректную позицию через MQTT.</li>
+                                            <li>Пакеты с координатами должны быть незашифрованы, либо зашифрованы ключом по-умолчанию.</li>
+                                            <li>Используйте поиск, чтобы найти ноды по ID или имени.</li>
+                                            <li>Наведите мышкой на ноду (на компьютере), чтобы увидеть основные данные.</li>
+                                            <li>Кликните мышкой на ноду, чтобы увидеть дополнительную информацию (телеметрию, графы, трассировки).</li>
+                                            <li>Используйте панель слоев справа вверху, чтобы увидеть соседей и точки маршрута.</li>
+                                            <li>Используйте кнопку настроек и подстройте карту под себя.</li>
+                                            <li>Нашли ошибку или есть идеия? <a class="link" target="_blank" href="https://github.com/vgrishin/meshtastic-map">Добавьте issue</a> на GitHub.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -424,44 +424,44 @@
                                     <div class="font-bold mb-2">FAQ</div>
                                     <div class="space-y-2">
                                         <div class="bg-gray-100 rounded p-2 border border-gray-200">
-                                            <div class="font-semibold">How do I add my node to the map?</div>
-                                            <div>Your node, or a node that hears your node must uplink to our MQTT server.</div>
-                                            <div>Your position packet must be unencrypted, or encrypted with the default key.</div>
-                                            <div>If your node has v2.5 firmware or newer, you must enable "OK to MQTT".</div>
-                                            <div>Use the MQTT server details below to uplink to this map.</div>
+                                            <div class="font-semibold">Как мне добавить моё устройство на карту?</div>
+                                            <div>Ваше устройство, либо устройство, которое вас слышит, должно выгружать данные на наш сервер MQTT.</div>
+                                            <div>Пакеты с координатами должны быть незашифрованы, либо зашифрованы ключом по-умолчанию.</div>
+                                            <div>Если ваше устройство имеет прошивку v2.5 или новее, вам нужно включить "OK to MQTT" в настройках LoRa.</div>
+                                            <div>Для отправки ваших данных на карту, вам нужно подключиться к MQTT серверу с данными ниже.</div>
                                         </div>
                                         <div class="bg-gray-100 rounded p-2 border border-gray-200">
-                                            <div class="font-semibold">What MQTT server should I use?</div>
+                                            <div class="font-semibold">Какой MQTT сервер указать в настройках?</div>
                                             <ul class="list-disc list-inside">
-                                                <li>Address: mqtt.meshtastic.liamcottle.net</li>
-                                                <li>Username: uplink</li>
-                                                <li>Password: uplink</li>
-                                                <li>Encryption Enabled: Yes</li>
-                                                <li>JSON Output: No</li>
-                                                <li>TLS Enabled: No</li>
+                                                <li>Адрес: mqtt.meshekb.ru</li>
+                                                <li>Имя пользователя: meshekb</li>
+                                                <li>Пароль: large2cats</li>
+                                                <li>Шифрование включено: Да</li>
+                                                <li>Вывод JSON: Нет</li>
+                                                <li>TLS включен: Нет</li>
                                             </ul>
-                                            <div>Please note, nodes can only uplink to this server. Downlink is disabled.</div>
-                                            <div>We suggest running dedicated nodes for uplinking to the map.</div>
+                                            <!--<div>Please note, nodes can only uplink to this server. Downlink is disabled.</div>-->
+                                            <div>Советвуем настраивать только специальные выделенные ноды для загрузки данных на данный сервер (карту).</div>
                                         </div>
                                         <div class="bg-gray-100 rounded p-2 border border-gray-200">
-                                            <div class="font-semibold">How do I remove my node from the map?</div>
-                                            <div>Nodes that have not been heard for 7 days are automatically removed.</div>
-                                            <div>Disable position reporting in your node to prevent it coming back.</div>
-                                            <div>Use custom encryption keys so the public can't see your position data.</div>
-                                            <div>If your node has v2.5 firmware or newer, we ignore packets if "OK to MQTT" is disabled.</div>
-                                            <div>To have your node removed now, please <a target="_blank" href="https://liamcottle.com/contact" class="link">contact me</a>.</div>
+                                            <div class="font-semibold">Как мне убрать моё устройство с карты?</div>
+                                            <div>Устройства, которые не были в сети 7 дней удаляются автоматически.</div>
+                                            <div>Отключите отправку координат на устройстве, чтобы больше не оказаться на карте.</div>
+                                            <div>Используйте индивидуальные ключи шифрования, чтобы никто не мог увидеть ваши данные.</div>
+                                            <div>Если ваше устройство имеет прошивку v2.5 или новее, сервер будет игнорировать ваши данные, если у вас выключена опция "OK to MQTT" в настройках LoRa.</div>
+                                            <div>Для немедленного удаления вашего устройства с карты <a target="_blank" href="mailto:me@vgrishin.me" class="link">напишите мне</a>.</div>
                                         </div>
                                         <div class="bg-gray-100 rounded p-2 border border-gray-200">
-                                            <div class="font-semibold">How do I see neighbours a node heard?</div>
-                                            <div>Open the top right layers panel and enable neighbours.</div>
-                                            <div>Some neighbours are from MQTT, this is patched in latest firmware.</div>
+                                            <div class="font-semibold">Как мне увидеть соседей, которые видны моему устройству?</div>
+                                            <div>Откройте панель слоев справа вверху и включите показ соседей.</div>
+                                            <div>Некоторые соседи получены через MQTT, это исправлено в последней прошивке.</div>
                                         </div>
                                         <div class="bg-gray-100 rounded p-2 border border-gray-200">
-                                            <div class="font-semibold">Why is my node showing up in the wrong place?</div>
-                                            <div>This public map obfuscates your position packets for v2.4 firmware and older.</div>
-                                            <div>Nodes on v2.4 and older have their positions obfuscated to 2 decimal places.</div>
-                                            <div>Nodes on v2.5 and newer, with "OK to MQTT" enabled, will show positions with your configured precision.</div>
-                                            <div>Nodes on v2.5 and newer, with "OK to MQTT" disabled, will not update their positions.</div>
+                                            <div class="font-semibold">Почему моё устройство отображается не на том месте?</div>
+                                            <div>Эта карты округляет ваши координаты (уменьшает точность) для прошивок v2.4 и старее.</div>
+                                            <div>Для устройств с прошивкой v2.4 координаты округляются до двух знаков после запятой.</div>
+                                            <div>Для устройств с прошивкой v2.5 и новее, с включенной опцией "OK to MQTT", будет показана позиция с точностью, выбранной вами в настройках (precision).</div>
+                                            <div>Для устройств с прошивкой v2.5 и новее, с выключенной опцией "OK to MQTT", позиция показана не будет.</div>
                                         </div>
                                     </div>
                                 </div>
@@ -470,9 +470,9 @@
                                 <div>
                                     <div class="font-bold mb-2">Legal</div>
                                     <div class="bg-gray-100 rounded p-2 border border-gray-200">
-                                        <div>This project is not affiliated with or endorsed by the <a class="link" target="_blank" href="https://meshtastic.org">Meshtastic</a> project.</div>
-                                        <div>The Meshtastic logo is the trademark of Meshtastic LLC.</div>
-                                        <div>Map tiles provided by <a class="link" target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a></div>
+                                        <div>Этот проект не связан и не одобрен проектом <a class="link" target="_blank" href="https://meshtastic.org">Meshtastic</a>.</div>
+                                        <div>Логотип Meshtastic является товарным знаком Meshtastic LLC.</div>
+                                        <div>Карта предоставлена <a class="link" target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a></div>
                                     </div>
                                 </div>
 
@@ -480,7 +480,7 @@
                                 <div class="mx-auto">
                                     <a href="javascript:void(0)" @click="dismissInfoModal">
                                         <div class="bg-gray-200 hover:bg-gray-300 px-6 py-2 rounded-md shadow">
-                                            Dismiss
+                                            Отклонить
                                         </div>
                                     </a>
                                 </div>
@@ -525,8 +525,8 @@
                         <div class="p-2 border-b border-gray-200 shadow">
                             <div class="flex items-start justify-between">
                                 <div>
-                                    <h2 class="font-bold">Meshtastic Devices</h2>
-                                    <h3 class="text-sm">Ordered by most popular</h3>
+                                    <h2 class="font-bold">Устройства Meshtastic</h2>
+                                    <h3 class="text-sm">Отсортированы по популярности</h3>
                                 </div>
                                 <div class="my-auto ml-3 flex h-7 items-center">
                                     <a href="javascript:void(0)" class="rounded-full" @click="isShowingHardwareModels = !isShowingHardwareModels">
@@ -554,7 +554,7 @@
                                             </span>
                                             <div class="truncate">
                                                 <p class="truncate text-sm font-medium text-gray-900">{{ hardwareModel.hardware_model_name }}</p>
-                                                <p class="truncate text-sm text-gray-500">{{ hardwareModel.count }} nodes on the map</p>
+                                                <p class="truncate text-sm text-gray-500">{{ hardwareModel.count }} устройств на карте</p>
                                             </div>
                                         </div>
                                     </a>
@@ -604,7 +604,7 @@
                                     </div>
                                 </div>
                                 <div class="my-auto mr-auto">
-                                    <h2 class="font-bold">Node Info</h2>
+                                    <h2 class="font-bold">Информация об узле (ноде)</h2>
                                     <h3 class="text-sm">{{ selectedNode.long_name }}</h3>
                                 </div>
                                 <div class="my-auto ml-2 flex h-7 items-center space-x-2">
@@ -637,7 +637,7 @@
                                         <path fill-rule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <div class="my-auto">This node has not reported a position.</div>
+                                <div class="my-auto">Это устройство не отправило координат.</div>
                             </div>
 
                             <div class="flex flex-col my-2">
@@ -658,7 +658,7 @@
                                             </svg>
                                         </div>
                                     </div>
-                                    <div class="mx-auto text-sm font-medium text-gray-900">Sent Msgs</div>
+                                    <div class="mx-auto text-sm font-medium text-gray-900">Отправленные сообщения</div>
                                 </a>
 
                                 <!-- received messages -->
@@ -670,7 +670,7 @@
                                             </svg>
                                         </div>
                                     </div>
-                                    <div class="mx-auto text-sm font-medium text-gray-900">Received Msgs</div>
+                                    <div class="mx-auto text-sm font-medium text-gray-900">Полученные сообщения</div>
                                 </a>
 
                                 <!-- gated messages -->
@@ -682,14 +682,14 @@
                                             </svg>
                                         </div>
                                     </div>
-                                    <div class="mx-auto text-sm font-medium text-gray-900">Gated Msgs</div>
+                                    <div class="mx-auto text-sm font-medium text-gray-900">Транслированные сообщения</div>
                                 </a>
 
                             </div>
 
                             <!-- details -->
                             <div>
-                                <div class="bg-gray-200 p-2 font-semibold">Details</div>
+                                <div class="bg-gray-200 p-2 font-semibold">Подробности</div>
                                 <ul role="list" class="flex-1 divide-y divide-gray-200">
 
                                     <!-- id -->
@@ -706,19 +706,19 @@
 
                                     <!-- role -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Role</div>
+                                        <div class="text-sm font-medium text-gray-900">Роль</div>
                                         <div class="ml-auto text-sm text-gray-700">{{ selectedNode.role_name }}</div>
                                     </li>
 
                                     <!-- hardware -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Hardware</div>
+                                        <div class="text-sm font-medium text-gray-900">Модель устройства</div>
                                         <div class="ml-auto text-sm text-gray-700">{{ selectedNode.hardware_model_name }}</div>
                                     </li>
 
                                     <!-- firmware version -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Firmware</div>
+                                        <div class="text-sm font-medium text-gray-900">Прошивка</div>
                                         <div class="ml-auto text-sm text-gray-700">
                                             <span v-if="selectedNode.firmware_version">{{ selectedNode.firmware_version }}</span>
                                             <span v-else>???</span>
@@ -730,12 +730,12 @@
 
                             <!-- lora config -->
                             <div>
-                                <div class="bg-gray-200 p-2 font-semibold">LoRa Config</div>
+                                <div class="bg-gray-200 p-2 font-semibold">Конфигурация LoRa</div>
                                 <ul role="list" class="flex-1 divide-y divide-gray-200">
 
                                     <!-- region -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Region</div>
+                                        <div class="text-sm font-medium text-gray-900">Регион</div>
                                         <div class="ml-auto text-sm text-gray-700">
                                             <span v-if="selectedNode.region_name">{{ selectedNode.region_name }} ({{ getRegionFrequencyRange(selectedNode.region_name) }})</span>
                                             <span v-else>???</span>
@@ -744,7 +744,7 @@
 
                                     <!-- modem preset -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Modem Preset</div>
+                                        <div class="text-sm font-medium text-gray-900">Шаблон настроек модема</div>
                                         <div class="ml-auto text-sm text-gray-700">
                                             <span v-if="selectedNode.modem_preset_name">{{ selectedNode.modem_preset_name }}</span>
                                             <span v-else>???</span>
@@ -753,7 +753,7 @@
 
                                     <!-- has default channel -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Has Default Channel</div>
+                                        <div class="text-sm font-medium text-gray-900">Есть канал по-умолчанию/div>
                                         <div class="ml-auto text-sm text-gray-700">
                                             <span v-if="selectedNode.has_default_channel != null">{{ selectedNode.has_default_channel ? "Yes" : "No" }}</span>
                                             <span v-else>???</span>
@@ -766,10 +766,10 @@
                             <!-- position -->
                             <div>
                                 <div @click.stop class="flex bg-gray-200 p-2 font-semibold">
-                                    <div class="my-auto">Position</div>
+                                    <div class="my-auto">Местоположение</div>
                                     <div class="ml-auto">
                                         <button @click="showNodePositionHistory(selectedNode.node_id)" type="button" class="rounded bg-white px-2 py-1 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                                            Show History
+                                            Показать историю
                                         </button>
                                     </div>
                                 </div>
@@ -777,7 +777,7 @@
 
                                     <!-- position -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Lat/Long</div>
+                                        <div class="text-sm font-medium text-gray-900">Шир/Дол</div>
                                         <div class="ml-auto text-sm text-gray-700">
                                             <span v-if="selectedNode.latitude && selectedNode.longitude">{{ selectedNode.latitude }}, {{ selectedNode.longitude }}</span>
                                             <span v-else>???</span>
@@ -786,9 +786,9 @@
 
                                     <!-- altitude -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Altitude</div>
+                                        <div class="text-sm font-medium text-gray-900">Высота</div>
                                         <div class="ml-auto text-sm text-gray-700">
-                                            <span v-if="selectedNode.altitude">{{ selectedNode.altitude }}m</span>
+                                            <span v-if="selectedNode.altitude">{{ selectedNode.altitude }}м</span>
                                             <span v-else>???</span>
                                         </div>
                                     </li>
@@ -799,12 +799,12 @@
                             <!-- device metrics -->
                             <div>
                                 <div class="flex bg-gray-200 p-2 font-semibold">
-                                    <div class="my-auto">Device Metrics</div>
+                                    <div class="my-auto">Метрики устройства</div>
                                     <div class="my-auto ml-auto">
                                         <select v-model="deviceMetricsTimeRange" class="block w-full rounded-md border-0 py-0.5 pl-2 pr-8 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-blue-500 sm:text-sm sm:leading-6">
-                                            <option value="1d">1 Day</option>
-                                            <option value="3d">3 Days</option>
-                                            <option value="7d">7 Days</option>
+                                            <option value="1d">1 день</option>
+                                            <option value="3d">3 дня</option>
+                                            <option value="7d">7 дней</option>
                                         </select>
                                     </div>
                                 </div>
@@ -819,15 +819,15 @@
                                                     <div class="mx-auto flex space-x-2">
                                                         <div class="flex mx-auto">
                                                             <div class="my-auto w-2 h-2 bg-blue-500 rounded-full"></div>
-                                                            <div class="my-auto ml-1 text-sm text-gray-500">Battery Level</div>
+                                                            <div class="my-auto ml-1 text-sm text-gray-500">Уровень заряда</div>
                                                         </div>
                                                         <div class="flex mx-auto">
                                                             <div class="my-auto w-2 h-2 bg-green-500 rounded-full"></div>
-                                                            <div class="my-auto ml-1 text-sm text-gray-500">Channel Utilization</div>
+                                                            <div class="my-auto ml-1 text-sm text-gray-500">Загрузка канала (Ch Util)</div>
                                                         </div>
                                                         <div class="flex mx-auto">
                                                             <div class="my-auto w-2 h-2 bg-orange-500 rounded-full"></div>
-                                                            <div class="my-auto ml-1 text-sm text-gray-500">Air Util TX</div>
+                                                            <div class="my-auto ml-1 text-sm text-gray-500">Загрузка передачи (Air Util TX)</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -837,10 +837,10 @@
 
                                     <!-- battery level -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Battery Level</div>
+                                        <div class="text-sm font-medium text-gray-900">Заряд батареи</div>
                                         <div class="ml-auto text-sm text-gray-700">
                                             <span v-if="selectedNode.battery_level">
-                                                <span v-if="selectedNode.battery_level > 100">Plugged In</span>
+                                                <span v-if="selectedNode.battery_level > 100">Заряжается</span>
                                                 <span v-else>{{ selectedNode.battery_level }}%</span>
                                             </span>
                                             <span v-else>???</span>
@@ -849,7 +849,7 @@
 
                                     <!-- voltage -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Voltage</div>
+                                        <div class="text-sm font-medium text-gray-900">Напряжение</div>
                                         <div class="ml-auto text-sm text-gray-700">
                                             <span v-if="selectedNode.voltage">{{ Number(selectedNode.voltage).toFixed(2) }}V</span>
                                             <span v-else>???</span>
@@ -858,7 +858,7 @@
 
                                     <!-- channel utilization -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Channel Utilization</div>
+                                        <div class="text-sm font-medium text-gray-900">Загрузка канала (Ch Util)</div>
                                         <div class="ml-auto text-sm text-gray-700">
                                             <span v-if="selectedNode.channel_utilization">{{ Number(selectedNode.channel_utilization).toFixed(2) }}%</span>
                                             <span v-else>???</span>
@@ -867,7 +867,7 @@
 
                                     <!-- air util tx -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Air Util Tx</div>
+                                        <div class="text-sm font-medium text-gray-900">Загрузка передачи (Air Util Tx)</div>
                                         <div class="ml-auto text-sm text-gray-700">
                                             <span v-if="selectedNode.air_util_tx">{{ Number(selectedNode.air_util_tx).toFixed(2) }}%</span>
                                             <span v-else>???</span>
@@ -876,7 +876,7 @@
 
                                     <!-- air util tx -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Uptime</div>
+                                        <div class="text-sm font-medium text-gray-900">Время непрерывной работы</div>
                                         <div class="ml-auto text-sm text-gray-700">
                                             <span v-if="selectedNode.uptime_seconds">{{ formatUptimeSeconds(selectedNode.uptime_seconds) }}</span>
                                             <span v-else>???</span>
@@ -889,12 +889,12 @@
                             <!-- environment metrics -->
                             <div>
                                 <div class="flex bg-gray-200 p-2 font-semibold">
-                                    <div class="my-auto">Environment Metrics</div>
+                                    <div class="my-auto">Метрики окружения</div>
                                     <div class="my-auto ml-auto">
                                         <select v-model="environmentMetricsTimeRange" class="block w-full rounded-md border-0 py-0.5 pl-2 pr-8 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-blue-500 sm:text-sm sm:leading-6">
-                                            <option value="1d">1 Day</option>
-                                            <option value="3d">3 Days</option>
-                                            <option value="7d">7 Days</option>
+                                            <option value="1d">1 день</option>
+                                            <option value="3d">3 дня</option>
+                                            <option value="7d">7 дней</option>
                                         </select>
                                     </div>
                                 </div>
@@ -909,15 +909,15 @@
                                                     <div class="mx-auto flex space-x-2">
                                                         <div class="flex mx-auto">
                                                             <div class="my-auto w-2 h-2 bg-blue-500 rounded-full"></div>
-                                                            <div class="my-auto ml-1 text-sm text-gray-500">Temperature</div>
+                                                            <div class="my-auto ml-1 text-sm text-gray-500">Температура</div>
                                                         </div>
                                                         <div class="flex mx-auto">
                                                             <div class="my-auto w-2 h-2 bg-green-500 rounded-full"></div>
-                                                            <div class="my-auto ml-1 text-sm text-gray-500">Humidity</div>
+                                                            <div class="my-auto ml-1 text-sm text-gray-500">Влажность</div>
                                                         </div>
                                                         <div class="flex mx-auto">
                                                             <div class="my-auto w-2 h-2 bg-orange-500 rounded-full"></div>
-                                                            <div class="my-auto ml-1 text-sm text-gray-500">Pressure</div>
+                                                            <div class="my-auto ml-1 text-sm text-gray-500">Давление</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -927,7 +927,7 @@
 
                                     <!-- temperature -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Temperature</div>
+                                        <div class="text-sm font-medium text-gray-900">Температура</div>
                                         <div class="ml-auto text-sm text-gray-700">
                                             <span v-if="selectedNode.temperature">{{ formatTemperature(selectedNode.temperature) }}</span>
                                             <span v-else>???</span>
@@ -936,7 +936,7 @@
 
                                     <!-- relative humidity -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Relative Humidity</div>
+                                        <div class="text-sm font-medium text-gray-900">Относительная влажность</div>
                                         <div class="ml-auto text-sm text-gray-700">
                                             <span v-if="selectedNode.relative_humidity">{{ Number(selectedNode.relative_humidity).toFixed(0) }}%</span>
                                             <span v-else>???</span>
@@ -945,7 +945,7 @@
 
                                     <!-- barometric pressure -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Barometric Pressure</div>
+                                        <div class="text-sm font-medium text-gray-900">Барометрическое давление</div>
                                         <div class="ml-auto text-sm text-gray-700">
                                             <span v-if="selectedNode.barometric_pressure">{{ Number(selectedNode.barometric_pressure).toFixed(1) }}hPa</span>
                                             <span v-else>???</span>
@@ -958,12 +958,12 @@
                             <!-- power metrics -->
                             <div>
                                 <div class="flex bg-gray-200 p-2 font-semibold">
-                                    <div class="my-auto">Power Metrics</div>
+                                    <div class="my-auto">Метрики питания</div>
                                     <div class="my-auto ml-auto">
                                         <select v-model="powerMetricsTimeRange" class="block w-full rounded-md border-0 py-0.5 pl-2 pr-8 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-blue-500 sm:text-sm sm:leading-6">
-                                            <option value="1d">1 Day</option>
-                                            <option value="3d">3 Days</option>
-                                            <option value="7d">7 Days</option>
+                                            <option value="1d">1 день</option>
+                                            <option value="3d">3 дня</option>
+                                            <option value="7d">7 дней</option>
                                         </select>
                                     </div>
                                 </div>
@@ -978,15 +978,15 @@
                                                     <div class="mx-auto flex space-x-2">
                                                         <div class="flex mx-auto">
                                                             <div class="my-auto w-2 h-2 bg-blue-500 rounded-full"></div>
-                                                            <div class="my-auto ml-1 text-sm text-gray-500">Channel 1</div>
+                                                            <div class="my-auto ml-1 text-sm text-gray-500">Канал 1</div>
                                                         </div>
                                                         <div class="flex mx-auto">
                                                             <div class="my-auto w-2 h-2 bg-green-500 rounded-full"></div>
-                                                            <div class="my-auto ml-1 text-sm text-gray-500">Channel 2</div>
+                                                            <div class="my-auto ml-1 text-sm text-gray-500">Канал 2</div>
                                                         </div>
                                                         <div class="flex mx-auto">
                                                             <div class="my-auto w-2 h-2 bg-orange-500 rounded-full"></div>
-                                                            <div class="my-auto ml-1 text-sm text-gray-500">Channel 3</div>
+                                                            <div class="my-auto ml-1 text-sm text-gray-500">Канал 3</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -996,12 +996,12 @@
 
                                     <!-- channel 1 -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Channel 1</div>
+                                        <div class="text-sm font-medium text-gray-900">Канал 1</div>
                                         <div class="ml-auto text-sm text-gray-700">
                                             <span v-if="selectedNodeLatestPowerMetric">
-                                                <span v-if="selectedNodeLatestPowerMetric?.ch1_voltage">{{ Number(selectedNodeLatestPowerMetric.ch1_voltage).toFixed(2) }}V</span>
+                                                <span v-if="selectedNodeLatestPowerMetric?.ch1_voltage">{{ Number(selectedNodeLatestPowerMetric.ch1_voltage).toFixed(2) }}В</span>
                                                 <span v-else>???</span>
-                                                <span v-if="selectedNodeLatestPowerMetric?.ch1_current"> / {{ Number(selectedNodeLatestPowerMetric.ch1_current).toFixed(2) }}mA</span>
+                                                <span v-if="selectedNodeLatestPowerMetric?.ch1_current"> / {{ Number(selectedNodeLatestPowerMetric.ch1_current).toFixed(2) }}мА</span>
                                             </span>
                                             <span v-else>???</span>
                                         </div>
@@ -1009,12 +1009,12 @@
 
                                     <!-- channel 2 -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Channel 2</div>
+                                        <div class="text-sm font-medium text-gray-900">Канал 2</div>
                                         <div class="ml-auto text-sm text-gray-700">
                                             <span v-if="selectedNodeLatestPowerMetric">
-                                                <span v-if="selectedNodeLatestPowerMetric?.ch2_voltage">{{ Number(selectedNodeLatestPowerMetric.ch2_voltage).toFixed(2) }}V</span>
+                                                <span v-if="selectedNodeLatestPowerMetric?.ch2_voltage">{{ Number(selectedNodeLatestPowerMetric.ch2_voltage).toFixed(2) }}В</span>
                                                 <span v-else>???</span>
-                                                <span v-if="selectedNodeLatestPowerMetric?.ch2_current"> / {{ Number(selectedNodeLatestPowerMetric.ch2_current).toFixed(2) }}mA</span>
+                                                <span v-if="selectedNodeLatestPowerMetric?.ch2_current"> / {{ Number(selectedNodeLatestPowerMetric.ch2_current).toFixed(2) }}мА</span>
                                             </span>
                                             <span v-else>???</span>
                                         </div>
@@ -1022,12 +1022,12 @@
 
                                     <!-- channel 3 -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Channel 3</div>
+                                        <div class="text-sm font-medium text-gray-900">Канал 3</div>
                                         <div class="ml-auto text-sm text-gray-700">
                                             <span v-if="selectedNodeLatestPowerMetric">
-                                                <span v-if="selectedNodeLatestPowerMetric?.ch3_voltage">{{ Number(selectedNodeLatestPowerMetric.ch3_voltage).toFixed(2) }}V</span>
+                                                <span v-if="selectedNodeLatestPowerMetric?.ch3_voltage">{{ Number(selectedNodeLatestPowerMetric.ch3_voltage).toFixed(2) }}В</span>
                                                 <span v-else>???</span>
-                                                <span v-if="selectedNodeLatestPowerMetric?.ch3_current"> / {{ Number(selectedNodeLatestPowerMetric.ch3_current).toFixed(2) }}mA</span>
+                                                <span v-if="selectedNodeLatestPowerMetric?.ch3_current"> / {{ Number(selectedNodeLatestPowerMetric.ch3_current).toFixed(2) }}мА</span>
                                             </span>
                                             <span v-else>???</span>
                                         </div>
@@ -1040,7 +1040,7 @@
                             <div>
                                 <div class="bg-gray-200 p-2">
                                     <div class="font-semibold">MQTT</div>
-                                    <div class="text-sm text-gray-600">Topics this node sent packets to</div>
+                                    <div class="text-sm text-gray-600">Количество топиков, куда устройство отправило данные</div>
                                 </div>
                                 <ul role="list" class="flex-1 divide-y divide-gray-200">
                                     <template v-if="selectedNodeMqttMetrics.length > 0">
@@ -1050,7 +1050,7 @@
                                                     <div class="relative flex min-w-0 flex-1 items-center">
                                                         <div class="truncate">
                                                             <p class="truncate text-sm font-medium text-gray-900">{{ mqttMetric.mqtt_topic }}</p>
-                                                            <div class="text-sm text-gray-700">Last packet {{ moment(new Date(mqttMetric.last_packet_at)).fromNow() }}</div>
+                                                            <div class="text-sm text-gray-700">Последняя отправка {{ moment(new Date(mqttMetric.last_packet_at)).fromNow() }}</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1063,7 +1063,7 @@
                                                 <div class="block flex-1 px-4 py-2">
                                                     <div class="relative flex min-w-0 flex-1 items-center">
                                                         <div class="truncate">
-                                                            <div class="text-sm text-gray-700">No packets seen on MQTT</div>
+                                                            <div class="text-sm text-gray-700">Данных в MQTT не обнаружено</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1076,8 +1076,8 @@
                             <!-- traceroutes -->
                             <div>
                                 <div class="bg-gray-200 p-2">
-                                    <div class="font-semibold">Trace Routes</div>
-                                    <div class="text-sm text-gray-600">Only 5 most recent are shown</div>
+                                    <div class="font-semibold">Трассировки</div>
+                                    <div class="text-sm text-gray-600">Показаны 5 последних</div>
                                 </div>
                                 <ul role="list" class="flex-1 divide-y divide-gray-200">
                                     <template v-if="selectedNodeTraceroutes.length > 0">
@@ -1087,7 +1087,7 @@
                                                     <div class="relative flex min-w-0 flex-1 items-center">
                                                         <div>
                                                             <p class="text-sm text-gray-900"><span class="font-medium">{{ findNodeById(traceroute.to)?.long_name || '???' }}</span> to <span class="font-medium">{{ findNodeById(traceroute.from)?.long_name || '???' }}</span></p>
-                                                            <div class="text-sm text-gray-700">{{ moment(new Date(traceroute.updated_at)).fromNow() }} - {{ traceroute.route.length }} hops {{ traceroute.channel_id ? `on ${traceroute.channel_id}` : '' }}</div>
+                                                            <div class="text-sm text-gray-700">{{ moment(new Date(traceroute.updated_at)).fromNow() }} - {{ traceroute.route.length }} прыжков {{ traceroute.channel_id ? `для ${traceroute.channel_id}` : '' }}</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1100,7 +1100,7 @@
                                                 <div class="block flex-1 px-4 py-2">
                                                     <div class="relative flex min-w-0 flex-1 items-center">
                                                         <div class="truncate">
-                                                            <div class="text-sm text-gray-700">No traceroutes seen on MQTT</div>
+                                                            <div class="text-sm text-gray-700">Трассировок в MQTT не обнаружено</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1112,24 +1112,24 @@
 
                             <!-- other -->
                             <div>
-                                <div class="bg-gray-200 p-2 font-semibold">Other</div>
+                                <div class="bg-gray-200 p-2 font-semibold">Другое</div>
                                 <ul role="list" class="flex-1 divide-y divide-gray-200">
 
                                     <!-- first seen -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">First Seen</div>
+                                        <div class="text-sm font-medium text-gray-900">Первое появление</div>
                                         <div class="ml-auto text-sm text-gray-700">{{ moment(new Date(selectedNode.created_at)).fromNow() }}</div>
                                     </li>
 
                                     <!-- last seen -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Last Seen</div>
+                                        <div class="text-sm font-medium text-gray-900">Видели последний раз</div>
                                         <div class="ml-auto text-sm text-gray-700">{{ moment(new Date(selectedNode.updated_at)).fromNow() }}</div>
                                     </li>
 
                                     <!-- neighbours updated -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Neighbours Updated</div>
+                                        <div class="text-sm font-medium text-gray-900">Соседи обновлены</div>
                                         <div class="ml-auto text-sm text-gray-700">
                                             <span v-if="selectedNode.neighbours_updated_at">{{ moment(new Date(selectedNode.neighbours_updated_at)).fromNow() }}</span>
                                             <span v-else>???</span>
@@ -1138,7 +1138,7 @@
 
                                     <!-- position updated -->
                                     <li class="flex p-3">
-                                        <div class="text-sm font-medium text-gray-900">Position Updated</div>
+                                        <div class="text-sm font-medium text-gray-900">Позиция обновлена</div>
                                         <div class="ml-auto text-sm text-gray-700">
                                             <span v-if="selectedNode.position_updated_at">{{ moment(new Date(selectedNode.position_updated_at)).fromNow() }}</span>
                                             <span v-else>???</span>
@@ -1151,10 +1151,10 @@
                             <!-- share -->
                             <div>
                                 <div class="flex bg-gray-200 p-2 font-semibold">
-                                    <div class="my-auto">Share Link</div>
+                                    <div class="my-auto">Поделиться</div>
                                     <div class="ml-auto">
                                         <button @click="copyShareLinkForNode(selectedNode.node_id)" type="button" class="rounded bg-white px-2 py-1 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                                            Copy
+                                            Копировать
                                         </button>
                                     </div>
                                 </div>
@@ -1212,8 +1212,8 @@
                         <div class="p-2 border-b border-gray-200 shadow">
                             <div class="flex items-start justify-between">
                                 <div>
-                                    <h2 class="font-bold">Traceroute #{{ selectedTraceRoute.id }}</h2>
-                                    <h3 class="text-sm">{{ moment(new Date(selectedTraceRoute.updated_at)).fromNow() }} - {{ selectedTraceRoute.route.length }} hops {{ selectedTraceRoute.channel_id ? `on ${selectedTraceRoute.channel_id}` : '' }}</h3>
+                                    <h2 class="font-bold">Трассировка #{{ selectedTraceRoute.id }}</h2>
+                                    <h3 class="text-sm">{{ moment(new Date(selectedTraceRoute.updated_at)).fromNow() }} - {{ selectedTraceRoute.route.length }} прыжков {{ selectedTraceRoute.channel_id ? `для ${selectedTraceRoute.channel_id}` : '' }}</h3>
                                 </div>
                                 <div class="my-auto ml-3 flex h-7 items-center">
                                     <a href="javascript:void(0)" class="rounded-full" @click="selectedTraceRoute = null">
@@ -1250,7 +1250,7 @@
                                         <div class="flex-auto py-0.5 text-sm leading-5 text-gray-500">
                                             <div class="font-medium text-gray-900">{{ findNodeById(selectedTraceRoute.to)?.long_name || '???' }}</div>
                                             <div>Hex ID: !{{ Number(selectedTraceRoute.to).toString(16) }}</div>
-                                            <div>Started the traceroute</div>
+                                            <div>Начал трассирровку</div>
                                         </div>
                                     </li>
 
@@ -1269,7 +1269,7 @@
                                         <div class="flex-auto py-0.5 text-sm leading-5 text-gray-500">
                                             <div class="font-medium text-gray-900">{{ findNodeById(route)?.long_name || '???' }}</div>
                                             <div>Hex ID: !{{ Number(route).toString(16) }}</div>
-                                            <div>Forwarded the packet</div>
+                                            <div>Переслал пакет данных</div>
                                         </div>
                                     </li>
 
@@ -1288,7 +1288,7 @@
                                         <div class="flex-auto py-0.5 text-sm leading-5 text-gray-500">
                                             <div class="font-medium text-gray-900">{{ findNodeById(selectedTraceRoute.from)?.long_name || '???' }}</div>
                                             <div>Hex ID: !{{ Number(selectedTraceRoute.from).toString(16) }}</div>
-                                            <div>Replied to traceroute</div>
+                                            <div>Ответил на трассировку</div>
                                         </div>
                                     </li>
 
@@ -1307,7 +1307,7 @@
                                         <div class="flex-auto py-0.5 text-sm leading-5 text-gray-500">
                                             <div class="font-medium text-gray-900">{{ findNodeById(selectedTraceRoute.gateway_id)?.long_name || '???' }}</div>
                                             <div>Hex ID: !{{ Number(selectedTraceRoute.gateway_id).toString(16) }}</div>
-                                            <div>Gated the packet to MQTT</div>
+                                            <div>Отправил данные в MQTT</div>
                                         </div>
                                     </li>
 
@@ -1361,8 +1361,8 @@
                         <div class="p-2 border-b border-gray-200 shadow">
                             <div class="flex items-start justify-between">
                                 <div>
-                                    <h2 class="font-bold">Settings</h2>
-                                    <h3 class="text-sm">Changes are only saved in this browser.</h3>
+                                    <h2 class="font-bold">Настройки</h2>
+                                    <h3 class="text-sm">Настройки сохраняются только в этом браузере.</h3>
                                 </div>
                                 <div class="my-auto ml-3 flex h-7 items-center">
                                     <a href="javascript:void(0)" class="rounded-full" @click="isShowingSettings = false">
@@ -1382,116 +1382,116 @@
 
                             <!-- configNodesMaxAgeInSeconds -->
                             <div class="p-2">
-                                <label class="block text-sm font-medium text-gray-900">Nodes Max Age</label>
-                                <div class="text-xs text-gray-600 mb-2">Nodes not updated within this time are hidden. Reload to update map.</div>
+                                <label class="block text-sm font-medium text-gray-900">Срок жизни нод</label>
+                                <div class="text-xs text-gray-600 mb-2">Ноды, которые не обновлялись указанное время, будут скрыты. Обновите для применения параметра.</div>
                                 <select v-model="configNodesMaxAgeInSeconds" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                    <option :value="null">Show All</option>
-                                    <option value="900">15 minutes</option>
-                                    <option value="1800">30 minutes</option>
-                                    <option value="3600">1 hour</option>
-                                    <option value="10800">3 hours</option>
-                                    <option value="21600">6 hours</option>
-                                    <option value="43200">12 hours</option>
-                                    <option value="86400">24 hours</option>
-                                    <option value="172800">2 days</option>
-                                    <option value="259200">3 days</option>
-                                    <option value="345600">4 days</option>
-                                    <option value="432000">5 days</option>
-                                    <option value="518400">6 days</option>
-                                    <option value="604800">7 days</option>
+                                    <option :value="null">Показать все</option>
+                                    <option value="900">15 минут</option>
+                                    <option value="1800">30 минут</option>
+                                    <option value="3600">1 час</option>
+                                    <option value="10800">3 часа</option>
+                                    <option value="21600">6 часов</option>
+                                    <option value="43200">12 часов</option>
+                                    <option value="86400">24 часа</option>
+                                    <option value="172800">2 дня</option>
+                                    <option value="259200">3 дня</option>
+                                    <option value="345600">4 дня</option>
+                                    <option value="432000">5 дней</option>
+                                    <option value="518400">6 дней</option>
+                                    <option value="604800">7 дней</option>
                                 </select>
                             </div>
 
                             <!-- configNodesDisconnectedAgeInSeconds -->
                             <div class="p-2">
-                                <label class="block text-sm font-medium text-gray-900">Nodes Disconnected Age</label>
-                                <div class="text-xs text-gray-600 mb-2">Nodes that have not uplinked to MQTT in this time will show as blue icons. Reload to update map.</div>
+                                <label class="block text-sm font-medium text-gray-900">Срок перевода ноды в статус "Отключены"</label>
+                                <div class="text-xs text-gray-600 mb-2">Ноды, которые не отправляли данные на MQTT-сервер больше указанного времени, будут отображаться синей точкой.</div>
                                 <select v-model="configNodesDisconnectedAgeInSeconds" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                    <option value="900">15 minutes</option>
-                                    <option value="1800">30 minutes</option>
-                                    <option value="2700">45 minutes</option>
-                                    <option value="3600">1 hour</option>
+                                    <option value="900">15 минут</option>
+                                    <option value="1800">30 минут</option>
+                                    <option value="2700">45 минут</option>
+                                    <option value="3600">1 час</option>
                                     <option value="7200">2 hours</option>
-                                    <option value="10800">3 hours</option>
-                                    <option value="21600">6 hours</option>
-                                    <option value="43200">12 hours</option>
-                                    <option value="86400">24 hours</option>
-                                    <option value="172800">2 days</option>
-                                    <option value="259200">3 days</option>
-                                    <option value="345600">4 days</option>
-                                    <option value="432000">5 days</option>
-                                    <option value="518400">6 days</option>
-                                    <option value="604800">7 days</option>
+                                    <option value="10800">3 часа</option>
+                                    <option value="21600">6 часов</option>
+                                    <option value="43200">12 часов</option>
+                                    <option value="86400">24 часа</option>
+                                    <option value="172800">2 дня</option>
+                                    <option value="259200">3 дня</option>
+                                    <option value="345600">4 дня</option>
+                                    <option value="432000">5 дней</option>
+                                    <option value="518400">6 дней</option>
+                                    <option value="604800">7 дней</option>
                                 </select>
                             </div>
 
                             <!-- configNodesOfflineAgeInSeconds -->
                             <div class="p-2">
-                                <label class="block text-sm font-medium text-gray-900">Nodes Offline Age</label>
-                                <div class="text-xs text-gray-600 mb-2">Nodes not updated within this time will show as red icons. Reload to update map.</div>
+                                <label class="block text-sm font-medium text-gray-900">Срок перевода ноды в статус "Не в сети"</label>
+                                <div class="text-xs text-gray-600 mb-2">Ноды, которые не обновлялись указанное время, будут отображаться красной точкой. Обновите для применения параметра.</div>
                                 <select v-model="configNodesOfflineAgeInSeconds" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                    <option :value="null">Don't show as offline</option>
-                                    <option value="900">15 minutes</option>
-                                    <option value="1800">30 minutes</option>
-                                    <option value="2700">45 minutes</option>
-                                    <option value="3600">1 hour</option>
+                                    <option :value="null">Не показывать ноды как "не в сети"</option>
+                                    <option value="900">15 минут</option>
+                                    <option value="1800">30 минут</option>
+                                    <option value="2700">45 минут</option>
+                                    <option value="3600">1 час</option>
                                     <option value="7200">2 hours</option>
-                                    <option value="10800">3 hours</option>
-                                    <option value="21600">6 hours</option>
-                                    <option value="43200">12 hours</option>
-                                    <option value="86400">24 hours</option>
-                                    <option value="172800">2 days</option>
-                                    <option value="259200">3 days</option>
-                                    <option value="345600">4 days</option>
-                                    <option value="432000">5 days</option>
-                                    <option value="518400">6 days</option>
-                                    <option value="604800">7 days</option>
+                                    <option value="10800">3 часа</option>
+                                    <option value="21600">6 часов</option>
+                                    <option value="43200">12 часов</option>
+                                    <option value="86400">24 часа</option>
+                                    <option value="172800">2 дня</option>
+                                    <option value="259200">3 дня</option>
+                                    <option value="345600">4 дня</option>
+                                    <option value="432000">5 дней</option>
+                                    <option value="518400">6 дней</option>
+                                    <option value="604800">7 дней</option>
                                 </select>
                             </div>
 
                             <!-- configWaypointsMaxAgeInSeconds -->
                             <div class="p-2">
-                                <label class="block text-sm font-medium text-gray-900">Waypoints Max Age</label>
-                                <div class="text-xs text-gray-600 mb-2">Waypoints not updated within this time are hidden. Reload to update map.</div>
+                                <label class="block text-sm font-medium text-gray-900">Срок жизни точек на маршруте</label>
+                                <div class="text-xs text-gray-600 mb-2">Точки маршрута старее будут скрыты. Обновите для применения параметра.</div>
                                 <select v-model="configWaypointsMaxAgeInSeconds" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                    <option :value="null">Show All</option>
-                                    <option value="900">15 minutes</option>
-                                    <option value="1800">30 minutes</option>
-                                    <option value="3600">1 hour</option>
-                                    <option value="10800">3 hours</option>
-                                    <option value="21600">6 hours</option>
-                                    <option value="43200">12 hours</option>
-                                    <option value="86400">24 hours</option>
-                                    <option value="172800">2 days</option>
-                                    <option value="259200">3 days</option>
-                                    <option value="345600">4 days</option>
-                                    <option value="432000">5 days</option>
-                                    <option value="518400">6 days</option>
-                                    <option value="604800">7 days</option>
+                                    <option :value="null">Показать все</option>
+                                    <option value="900">15 минут</option>
+                                    <option value="1800">30 минут</option>
+                                    <option value="3600">1 час</option>
+                                    <option value="10800">3 часа</option>
+                                    <option value="21600">6 часов</option>
+                                    <option value="43200">12 часов</option>
+                                    <option value="86400">24 часа</option>
+                                    <option value="172800">2 дня</option>
+                                    <option value="259200">3 дня</option>
+                                    <option value="345600">4 дня</option>
+                                    <option value="432000">5 дней</option>
+                                    <option value="518400">6 дней</option>
+                                    <option value="604800">7 дней</option>
                                 </select>
                             </div>
 
                             <!-- configNeighboursMaxDistanceInMeters -->
                             <div class="p-2">
-                                <label class="block text-sm font-medium text-gray-900">Neighbours Max Distance (meters)</label>
-                                <div class="text-xs text-gray-600 mb-2">Neighbours further than this are hidden. Reload to update map.</div>
+                                <label class="block text-sm font-medium text-gray-900">Максимальное расстояние до соседей (метры)</label>
+                                <div class="text-xs text-gray-600 mb-2">Ноды дальше указанного растояния будут скрыты. Обновите для применения параметра.</div>
                                 <input type="number" v-model="configNeighboursMaxDistanceInMeters" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             </div>
 
                             <!-- configZoomLevelGoToNode -->
                             <div class="p-2">
-                                <label class="block text-sm font-medium text-gray-900">Zoom Level (go to node)</label>
-                                <div class="text-xs text-gray-600 mb-2">How far to zoom map when navigating to a node.</div>
+                                <label class="block text-sm font-medium text-gray-900">Уровень увеличения (переход к ноде)</label>
+                                <div class="text-xs text-gray-600 mb-2">На сколько близкий масштаб использовать при переходе к ноде.</div>
                                 <input type="number" v-model="configZoomLevelGoToNode" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             </div>
 
                             <!-- configTemperatureFormat -->
                             <div class="p-2">
-                                <label class="block text-sm font-medium text-gray-900">Temperature Format</label>
-                                <div class="text-xs text-gray-600 mb-2">Metrics will be shown in the selected format.</div>
+                                <label class="block text-sm font-medium text-gray-900">Формат температуры</label>
+                                <div class="text-xs text-gray-600 mb-2">Показания будут отображены в выбранном формате.</div>
                                 <select v-model="configTemperatureFormat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                    <option value="celsius">Celsius (°C)</option>
-                                    <option value="fahrenheit">Fahrenheit (°F)</option>
+                                    <option value="celsius">Цельсия (°C)</option>
+                                    <option value="fahrenheit">Фаренгейта (°F)</option>
                                 </select>
                             </div>
 
@@ -1501,9 +1501,9 @@
                                     <div class="flex items-center h-5">
                                         <input type="checkbox" v-model="configAutoUpdatePositionInUrl" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300" required>
                                     </div>
-                                    <label class="ml-2 text-sm font-medium text-gray-900">Auto Update Position in URL</label>
+                                    <label class="ml-2 text-sm font-medium text-gray-900">Авто-обновление местоположения в URL</label>
                                 </div>
-                                <div class="text-xs text-gray-600">Sets lat/lng/zoom as query parameters.</div>
+                                <div class="text-xs text-gray-600">Устанавливает дол/шир/увеличение как параметры запроса.</div>
                             </div>
 
                             <!-- configEnableMapAnimations -->
@@ -1512,9 +1512,9 @@
                                     <div class="flex items-center h-5">
                                         <input type="checkbox" v-model="configEnableMapAnimations" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300" required>
                                     </div>
-                                    <label class="ml-2 text-sm font-medium text-gray-900">Enable Map Animations</label>
+                                    <label class="ml-2 text-sm font-medium text-gray-900">Включить анимации на карте</label>
                                 </div>
-                                <div class="text-xs text-gray-600">Map will animate flying to nodes.</div>
+                                <div class="text-xs text-gray-600">Карта будет анимировать переход к ноде.</div>
                             </div>
 
                         </div>
@@ -1543,9 +1543,9 @@
                         <div class="p-2">
                             <div class="flex items-start justify-between">
                                 <div>
-                                    <h2 class="font-bold">{{ selectedNodeToShowNeighbours.short_name }} Neighbours</h2>
-                                    <h3 v-if="selectedNodeToShowNeighboursType === 'we_heard'" class="text-sm">Nodes heard by {{ selectedNodeToShowNeighbours.short_name }}</h3>
-                                    <h3 v-if="selectedNodeToShowNeighboursType === 'heard_us'" class="text-sm">Nodes that heard {{ selectedNodeToShowNeighbours.short_name }}</h3>
+                                    <h2 class="font-bold">{{ selectedNodeToShowNeighbours.short_name }} - соседи</h2>
+                                    <h3 v-if="selectedNodeToShowNeighboursType === 'we_heard'" class="text-sm">Мы слышали {{ selectedNodeToShowNeighbours.short_name }}</h3>
+                                    <h3 v-if="selectedNodeToShowNeighboursType === 'heard_us'" class="text-sm">Слышали нас {{ selectedNodeToShowNeighbours.short_name }}</h3>
                                 </div>
                                 <div class="my-auto ml-3 flex h-7 items-center">
                                     <a href="javascript:void(0)" class="rounded-full" @click="dismissShowingNodeNeighbours">
@@ -1595,7 +1595,7 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="my-auto mr-auto font-bold">{{ selectedNodeToShowPositionHistory.short_name }} Position History</div>
+                                <div class="my-auto mr-auto font-bold">{{ selectedNodeToShowPositionHistory.short_name }} История местоположения</div>
                                 <div class="flex my-auto ml-3 space-x-2">
                                     <a href="javascript:void(0)" class="rounded-full" @click="dismissShowingNodePositionHistory">
                                         <div class="bg-gray-100 hover:bg-gray-200 p-1 rounded-full">
@@ -1612,9 +1612,9 @@
 
                                 <!-- quick range -->
                                 <div class="flex p-2 space-x-2">
-                                    <button @click="onPositionHistoryQuickRangeClick('1h')" type="button" class="w-full bg-gray-100 rounded border shadow px-2 py-1 text-sm hover:bg-gray-200 text-center">1 Hour</button>
-                                    <button @click="onPositionHistoryQuickRangeClick('24h')" type="button" class="w-full bg-gray-100 rounded border shadow px-2 py-1 text-sm hover:bg-gray-200 text-center">24 Hours</button>
-                                    <button @click="onPositionHistoryQuickRangeClick('7d')" type="button" class="w-full bg-gray-100 rounded border shadow px-2 py-1 text-sm hover:bg-gray-200 text-center">7 Days</button>
+                                    <button @click="onPositionHistoryQuickRangeClick('1h')" type="button" class="w-full bg-gray-100 rounded border shadow px-2 py-1 text-sm hover:bg-gray-200 text-center">1 час</button>
+                                    <button @click="onPositionHistoryQuickRangeClick('24h')" type="button" class="w-full bg-gray-100 rounded border shadow px-2 py-1 text-sm hover:bg-gray-200 text-center">24 часа</button>
+                                    <button @click="onPositionHistoryQuickRangeClick('7d')" type="button" class="w-full bg-gray-100 rounded border shadow px-2 py-1 text-sm hover:bg-gray-200 text-center">7 дней</button>
                                 </div>
 
                                 <!-- manual range -->
@@ -1622,13 +1622,13 @@
 
                                     <!-- from -->
                                     <div class="flex items-center">
-                                        <label class="text-sm pr-1 min-w-12 text-right">From:</label>
+                                        <label class="text-sm pr-1 min-w-12 text-right">От:</label>
                                         <input v-model="positionHistoryDateTimeFrom" @change="loadNodePositionHistory(selectedNodeToShowPositionHistory.node_id)" type="datetime-local" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1">
                                     </div>
 
                                     <!-- to -->
                                     <div class="flex items-center">
-                                        <label class="text-sm pr-1 min-w-12 text-right">To:</label>
+                                        <label class="text-sm pr-1 min-w-12 text-right">До:</label>
                                         <input v-model="positionHistoryDateTimeTo" @change="loadNodePositionHistory(selectedNodeToShowPositionHistory.node_id)" type="datetime-local" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1">
                                     </div>
 
@@ -1708,7 +1708,7 @@
         } catch(e) {}
 
         // overlays enabled by default
-        return ["Legend", "Position History"];
+        return ["Легенда", "История местоположения"];
 
     }
 
@@ -2104,7 +2104,7 @@
                         labels: labels,
                         datasets: [
                             {
-                                label: 'Battery Level',
+                                label: 'Заряд аккумулятора',
                                 borderColor: '#3b82f6',
                                 backgroundColor: '#3b82f6',
                                 pointStyle: false, // no points
@@ -2216,7 +2216,7 @@
                         labels: labels,
                         datasets: [
                             {
-                                label: 'Temperature',
+                                label: 'Температура',
                                 suffix: '°C',
                                 borderColor: '#3b82f6',
                                 backgroundColor: '#3b82f6',
@@ -2226,7 +2226,7 @@
                                 yAxisID: 'y',
                             },
                             {
-                                label: 'Humidity',
+                                label: 'Влажность',
                                 suffix: '%',
                                 borderColor: '#22c55e',
                                 backgroundColor: '#22c55e',
@@ -2236,7 +2236,7 @@
                                 yAxisID: 'y',
                             },
                             {
-                                label: 'Pressure',
+                                label: 'Давление',
                                 suffix: 'hPa',
                                 borderColor: '#f97316',
                                 backgroundColor: '#f97316',
@@ -2350,7 +2350,7 @@
                         labels: labels,
                         datasets: [
                             {
-                                label: 'Ch1 Voltage',
+                                label: 'Ch1 Напряжение',
                                 suffix: "V",
                                 borderColor: '#3b82f6',
                                 backgroundColor: '#3b82f6',
@@ -2360,7 +2360,7 @@
                                 yAxisID: 'y',
                             },
                             {
-                                label: 'Ch2 Voltage',
+                                label: 'Ch2 Напряжение',
                                 suffix: "V",
                                 borderColor: '#22c55e',
                                 backgroundColor: '#22c55e',
@@ -2370,7 +2370,7 @@
                                 yAxisID: 'y',
                             },
                             {
-                                label: 'Ch3 Voltage',
+                                label: 'Ch3 Напряжение',
                                 suffix: "V",
                                 borderColor: '#f97316',
                                 backgroundColor: '#f97316',
@@ -2380,7 +2380,7 @@
                                 yAxisID: 'y',
                             },
                             {
-                                label: 'Ch1 Current',
+                                label: 'Ch1 Текущий',
                                 suffix: "mA",
                                 borderColor: '#93c5fd',
                                 backgroundColor: '#93c5fd',
@@ -2390,7 +2390,7 @@
                                 yAxisID: 'y1',
                             },
                             {
-                                label: 'Ch2 Current',
+                                label: 'Ch2 Текущий',
                                 suffix: "mA",
                                 borderColor: '#86efac',
                                 backgroundColor: '#86efac',
@@ -2400,7 +2400,7 @@
                                 yAxisID: 'y1',
                             },
                             {
-                                label: 'Ch3 Current',
+                                label: 'Ch3 Текущий',
                                 suffix: "mA",
                                 borderColor: '#fdba74',
                                 backgroundColor: '#fdba74',
@@ -2520,7 +2520,7 @@
 
                 // reset default time range when opening position history ui
                 // YYYY-MM-DDTHH:mm is the format expected by the datetime-local input type
-                this.positionHistoryDateTimeFrom = moment().subtract(1, "hours").format('YYYY-MM-DDTHH:mm');
+                this.positionHistoryDateTimeFrom = moment().subtract(1, "часа").format('YYYY-MM-DDTHH:mm');
                 this.positionHistoryDateTimeTo = moment().format('YYYY-MM-DDTHH:mm');
 
                 // load position history
@@ -2532,17 +2532,17 @@
                 // update position history time range
                 switch(range){
                     case "1h": {
-                        this.positionHistoryDateTimeFrom = moment().subtract(1, "hours").format('YYYY-MM-DDTHH:mm');
+                        this.positionHistoryDateTimeFrom = moment().subtract(1, "час").format('YYYY-MM-DDTHH:mm');
                         this.positionHistoryDateTimeTo = moment().format('YYYY-MM-DDTHH:mm');
                         break;
                     }
                     case "24h": {
-                        this.positionHistoryDateTimeFrom = moment().subtract(24, "hours").format('YYYY-MM-DDTHH:mm');
+                        this.positionHistoryDateTimeFrom = moment().subtract(24, "часа").format('YYYY-MM-DDTHH:mm');
                         this.positionHistoryDateTimeTo = moment().format('YYYY-MM-DDTHH:mm');
                         break;
                     }
                     case "7d": {
-                        this.positionHistoryDateTimeFrom = moment().subtract(7, "days").format('YYYY-MM-DDTHH:mm');
+                        this.positionHistoryDateTimeFrom = moment().subtract(7, "дней").format('YYYY-MM-DDTHH:mm');
                         this.positionHistoryDateTimeTo = moment().format('YYYY-MM-DDTHH:mm');
                         break;
                     }
@@ -2562,7 +2562,7 @@
 
                 // make sure copy to clipboard is supported
                 if(!navigator.clipboard || !navigator.clipboard.writeText){
-                    alert("Clipboard not supported. Site must be served via https on iOS.");
+                    alert("Clipboard не поддерживается. Сайт должен работать на iOS через https.");
                     return;
                 }
 
@@ -2571,7 +2571,7 @@
                 navigator.clipboard.writeText(url);
 
                 // tell user we copied it
-                alert("Link copied to clipboard!");
+                alert("Ссылка скопирована!");
 
             },
             dismissShowingNodeNeighbours: function() {
@@ -2591,7 +2591,12 @@
                 var hours = Math.floor((secondsToFormat % (3600 * 24)) / 3600);
                 var minutes = Math.floor((secondsToFormat % 3600) / 60);
                 var seconds = Math.floor(secondsToFormat % 60);
-                var daysPlural = days === 1 ? 'day' : 'days';
+
+                var declineDate = days => days + [' дней', ' дня', ' день'][Math.round(2 / (
+                  +('' + days).substr(-1) || 10)) * !(('' + days).substr(-2, 1) == 1)];
+
+                var daysPlural = declineDate(days); //days === 1 ? 'day' : 'days';
+
                 return `${days} ${daysPlural} ${hours}h ${minutes}m ${seconds}s`;
             },
             formatTemperature: function(celsius) {
@@ -2816,14 +2821,17 @@
     // create legend
     var legendLayerGroup = new L.LayerGroup();
     var legend = L.control({position: 'bottomleft'});
+
     legend.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'leaflet-control-layers');
+
         div.style.backgroundColor = 'white';
         div.style.padding = '12px';
-        div.innerHTML = `<div style="margin-bottom:6px;"><strong>Legend</strong></div>`
-            + `<div style="display:flex"><div class="icon-mqtt-connected" style="width:12px;height:12px;margin-right:4px;margin-top:auto;margin-bottom:auto;"></div> MQTT Connected</div>`
-            + `<div style="display:flex"><div class="icon-mqtt-disconnected" style="width:12px;height:12px;margin-right:4px;margin-top:auto;margin-bottom:auto;"></div> MQTT Disconnected</div>`
-            + `<div style="display:flex"><div class="icon-offline" style="width:12px;height:12px;margin-right:4px;margin-top:auto;margin-bottom:auto;"></div> Offline Too Long</div>`;
+
+        div.innerHTML = `<div style="margin-bottom:6px;"><strong>Легенда</strong></div>`
+            + `<div style="display:flex"><div class="icon-mqtt-connected" style="width:12px;height:12px;margin-right:4px;margin-top:auto;margin-bottom:auto;"></div> Подключены к MQTT</div>`
+            + `<div style="display:flex"><div class="icon-mqtt-disconnected" style="width:12px;height:12px;margin-right:4px;margin-top:auto;margin-bottom:auto;"></div> Отключены от MQTT</div>`
+            + `<div style="display:flex"><div class="icon-offline" style="width:12px;height:12px;margin-right:4px;margin-top:auto;margin-bottom:auto;"></div> Слишком долго "не в сети"</div>`;
         return div;
     };
 
@@ -2834,7 +2842,7 @@
 
     // handle adding/remove legend on map (can't use L.Control as an overlay, so we toggle an empty L.LayerGroup)
     map.on('overlayadd overlayremove', function(event) {
-        if(event.name === "Legend"){
+        if(event.name === "Legend" || event.name === "Легенда"){
             if(event.type === "overlayadd"){
                 map.addControl(legend);
             } else if(event.type === "overlayremove"){
@@ -2867,16 +2875,17 @@
 
     // enable overlay layers based on config
     const enabledOverlayLayers = getConfigMapEnabledOverlayLayers();
-    if(enabledOverlayLayers.includes("Legend")){
+
+    if(enabledOverlayLayers.includes("Legend") || enabledOverlayLayers.includes("Легенда")){
         legendLayerGroup.addTo(map);
     }
-    if(enabledOverlayLayers.includes("Neighbours")){
+    if(enabledOverlayLayers.includes("Neighbours") || enabledOverlayLayers.includes("Соседи")){
         neighboursLayerGroup.addTo(map);
     }
-    if(enabledOverlayLayers.includes("Waypoints")){
+    if(enabledOverlayLayers.includes("Waypoints") || enabledOverlayLayers.includes("Точки маршрута")){
         waypointsLayerGroup.addTo(map);
     }
-    if(enabledOverlayLayers.includes("Position History")){
+    if(enabledOverlayLayers.includes("Position History") || enabledOverlayLayers.includes("История местоположения")){
         nodePositionHistoryLayerGroup.addTo(map);
     }
 
@@ -2963,7 +2972,7 @@
         // find node
         var node = findNodeById(id);
         if(!node){
-            alert("Could not find node: " + id);
+            alert("Не удается найти ноду: " + id);
             return false;
         }
 
@@ -3131,7 +3140,7 @@
 
         // generate terrain profile image url
         return "https://heywhatsthat.com/bin/profile-0904.cgi?" + new URLSearchParams({
-            src: "meshtastic.liamcottle.net",
+            src: "map.meshekb.ru",
             axes: 1, // include grid lines and a scale
             metric: 1, // show metric units
             curvature: 0, // don't include the curvature of the earth in the graphic
@@ -3214,23 +3223,23 @@
             }).addTo(nodeNeighboursLayerGroup);
 
             // default to showing distance in meters
-            var distance = `${distanceInMeters} meters`;
+            var distance = `${distanceInMeters} м.`;
 
             // scale to distance in kms
             if(distanceInMeters >= 1000){
                 const distanceInKilometers = (distanceInMeters / 1000).toFixed(2);
-                distance = `${distanceInKilometers} kilometers`;
+                distance = `${distanceInKilometers} км.`;
             }
 
             const terrainImageUrl = getTerrainProfileImage(node, neighbourNode);
 
-            const tooltip = `<b>[${escapeString(node.short_name)}] ${escapeString(node.long_name)}</b> heard <b>[${escapeString(neighbourNode.short_name)}] ${escapeString(neighbourNode.long_name)}</b>`
+            const tooltip = `<b>[${escapeString(node.short_name)}] ${escapeString(node.long_name)}</b> слышал <b>[${escapeString(neighbourNode.short_name)}] ${escapeString(neighbourNode.long_name)}</b>`
                 + `<br/>SNR: ${neighbour.snr}dB`
-                + `<br/>Distance: ${distance}`
-                + `<br/><br/>ID: ${node.node_id} heard ${neighbourNode.node_id}`
-                + `<br/>Hex ID: ${node.node_id_hex} heard ${neighbourNode.node_id_hex}`
-                + (node.neighbours_updated_at ? `<br/>Updated: ${moment(new Date(node.neighbours_updated_at)).fromNow()}` : '')
-                + `<br/><br/>Terrain images from <a href="http://www.heywhatsthat.com" target="_blank">HeyWhatsThat.com</a>`
+                + `<br/>Расстояние: ${distance}`
+                + `<br/><br/>ID: ${node.node_id} слышал ${neighbourNode.node_id}`
+                + `<br/>Hex ID: ${node.node_id_hex} слышал ${neighbourNode.node_id_hex}`
+                + (node.neighbours_updated_at ? `<br/>Обновлено: ${moment(new Date(node.neighbours_updated_at)).fromNow()}` : '')
+                + `<br/><br/>Изображения местности от <a href="http://www.heywhatsthat.com" target="_blank">HeyWhatsThat.com</a>`
                 + `<br/><a href="${terrainImageUrl}" target="_blank"><img src="${terrainImageUrl}" width="100%"></a>`;
 
             line.bindTooltip(tooltip, {
@@ -3335,23 +3344,23 @@
             }).addTo(nodeNeighboursLayerGroup);
 
             // default to showing distance in meters
-            var distance = `${distanceInMeters} meters`;
+            var distance = `${distanceInMeters} м.`;
 
             // scale to distance in kms
             if(distanceInMeters >= 1000){
                 const distanceInKilometers = (distanceInMeters / 1000).toFixed(2);
-                distance = `${distanceInKilometers} kilometers`;
+                distance = `${distanceInKilometers} км.`;
             }
 
             const terrainImageUrl = getTerrainProfileImage(neighbourNode, node);
 
-            const tooltip = `<b>[${escapeString(neighbourNode.short_name)}] ${escapeString(neighbourNode.long_name)}</b> heard <b>[${escapeString(node.short_name)}] ${escapeString(node.long_name)}</b>`
+            const tooltip = `<b>[${escapeString(neighbourNode.short_name)}] ${escapeString(neighbourNode.long_name)}</b> слышал <b>[${escapeString(node.short_name)}] ${escapeString(node.long_name)}</b>`
                 + `<br/>SNR: ${neighbour.snr}dB`
-                + `<br/>Distance: ${distance}`
-                + `<br/><br/>ID: ${neighbourNode.node_id} heard ${node.node_id}`
+                + `<br/>Расстояние: ${distance}`
+                + `<br/><br/>ID: ${neighbourNode.node_id} слышал ${node.node_id}`
                 + `<br/>Hex ID: ${neighbourNode.node_id_hex} heard ${node.node_id_hex}`
-                + (neighbourNode.neighbours_updated_at ? `<br/>Updated: ${moment(new Date(neighbourNode.neighbours_updated_at)).fromNow()}` : '')
-                + `<br/><br/>Terrain images from <a href="http://www.heywhatsthat.com" target="_blank">HeyWhatsThat.com</a>`
+                + (neighbourNode.neighbours_updated_at ? `<br/>Обновлено: ${moment(new Date(neighbourNode.neighbours_updated_at)).fromNow()}` : '')
+                + `<br/><br/>Изображения местности от <a href="http://www.heywhatsthat.com" target="_blank">HeyWhatsThat.com</a>`
                 + `<br/><a href="${terrainImageUrl}" target="_blank"><img src="${terrainImageUrl}" width="100%"></a>`;
 
             line.bindTooltip(tooltip, {
@@ -3408,6 +3417,7 @@
         const now = moment();
         const configNodesDisconnectedAgeInSeconds = getConfigNodesDisconnectedAgeInSeconds();
         const millisecondsSinceNodeLastUplinkedToMqtt = now.diff(moment(node.mqtt_connection_state_updated_at));
+
         return millisecondsSinceNodeLastUplinkedToMqtt < configNodesDisconnectedAgeInSeconds * 1000;
     }
 
@@ -3580,23 +3590,23 @@
                     polylineOffset += 2;
 
                     // default to showing distance in meters
-                    var distance = `${distanceInMeters} meters`;
+                    var distance = `${distanceInMeters} м.`;
 
                     // scale to distance in kms
                     if(distanceInMeters >= 1000){
                         const distanceInKilometers = (distanceInMeters / 1000).toFixed(2);
-                        distance = `${distanceInKilometers} kilometers`;
+                        distance = `${distanceInKilometers} км.`;
                     }
 
                     const terrainImageUrl = getTerrainProfileImage(node, neighbourNode);
 
-                    const tooltip = `<b>[${escapeString(node.short_name)}] ${escapeString(node.long_name)}</b> heard <b>[${escapeString(neighbourNode.short_name)}] ${escapeString(neighbourNode.long_name)}</b>`
+                    const tooltip = `<b>[${escapeString(node.short_name)}] ${escapeString(node.long_name)}</b> слышал <b>[${escapeString(neighbourNode.short_name)}] ${escapeString(neighbourNode.long_name)}</b>`
                         + `<br/>SNR: ${neighbour.snr}dB`
-                        + `<br/>Distance: ${distance}`
-                        + `<br/><br/>ID: ${node.node_id} heard ${neighbourNode.node_id}`
-                        + `<br/>Hex ID: ${node.node_id_hex} heard ${neighbourNode.node_id_hex}`
-                        + (node.neighbours_updated_at ? `<br/>Updated: ${moment(new Date(node.neighbours_updated_at)).fromNow()}` : '')
-                        + `<br/><br/>Terrain images from <a href="http://www.heywhatsthat.com" target="_blank">HeyWhatsThat.com</a>`
+                        + `<br/>Расстояние: ${distance}`
+                        + `<br/><br/>ID: ${node.node_id} слышал ${neighbourNode.node_id}`
+                        + `<br/>Hex ID: ${node.node_id_hex} слышал ${neighbourNode.node_id_hex}`
+                        + (node.neighbours_updated_at ? `<br/>Обновлено: ${moment(new Date(node.neighbours_updated_at)).fromNow()}` : '')
+                        + `<br/><br/>Изображения местности от <a href="http://www.heywhatsthat.com" target="_blank">HeyWhatsThat.com</a>`
                         + `<br/><a href="${terrainImageUrl}" target="_blank"><img src="${terrainImageUrl}" width="100%"></a>`;
 
                     line.bindTooltip(tooltip, {
@@ -3742,13 +3752,13 @@
             }
             tooltip += `<br/>[${escapeString(node.short_name)}] ${escapeString(node.long_name)}`;
             tooltip += `<br/>${positionHistory.latitude}, ${positionHistory.longitude}`;
-            tooltip += `<br/>Heard on: ${moment(new Date(positionHistory.created_at)).format("DD/MM/YYYY hh:mm A")}`;
+            tooltip += `<br/>Последний сигнал: ${moment(new Date(positionHistory.created_at)).format("DD/MM/YYYY hh:mm A")}`;
 
             // add gateway info if available
             if(positionHistory.gateway_id){
                 const gatewayNode = findNodeById(positionHistory.gateway_id);
                 const gatewayNodeInfo = gatewayNode ? `[${gatewayNode.short_name}] ${gatewayNode.long_name}` : "???";
-                tooltip += `<br/>Heard by: <a href="javascript:void(0);" onclick="goToNode(${positionHistory.gateway_id})">${gatewayNodeInfo}</a>`;
+                tooltip += `<br/>Кем был слышен: <a href="javascript:void(0);" onclick="goToNode(${positionHistory.gateway_id})">${gatewayNodeInfo}</a>`;
             }
 
             // create position history marker
@@ -3904,11 +3914,11 @@
         // format kilometers
         if(positionPrecisionInMeters > 1000){
             const positionPrecisionInKilometers = Math.ceil(positionPrecisionInMeters / 1000);
-            return `±${positionPrecisionInKilometers}km`;
+            return `±${positionPrecisionInKilometers}км`;
         }
 
         // format meters
-        return `±${positionPrecisionInMeters}m`;
+        return `±${positionPrecisionInMeters}м`;
 
     }
 
@@ -3916,13 +3926,15 @@
 
         // determine if node was recently heard uplinking packets to mqtt
         const nodeHasUplinkedToMqttRecently = hasNodeUplinkedToMqttRecently(node);
-        var mqttStatus = `<span class="text-blue-700">Disconnected</span>`;
+
+        var mqttStatus = `<span class="text-blue-700">Отключено</span>`;
+
         if(node.mqtt_connection_state_updated_at){
             var mqttStatusUpdatedAt = moment(new Date(node.mqtt_connection_state_updated_at)).fromNow();
             if(nodeHasUplinkedToMqttRecently){
-                mqttStatus = `<span><span class="text-green-700">Connected</span> (${mqttStatusUpdatedAt})</span>`;
+                mqttStatus = `<span><span class="text-green-700">Подключено</span> (${mqttStatusUpdatedAt})</span>`;
             } else {
-                mqttStatus = `<span><span class="text-blue-700">Disconnected</span> (${mqttStatusUpdatedAt})</span>`;
+                mqttStatus = `<span><span class="text-blue-700">Отключено</span> (${mqttStatusUpdatedAt})</span>`;
             }
         }
 
@@ -3930,27 +3942,27 @@
 
         var tooltip = `<img class="mb-4 w-40 mx-auto" src="/images/devices/${node.hardware_model_name}.png" onerror="this.classList.add('hidden')"/>` +
             `<b>${escapeString(node.long_name)}</b>` +
-            `<br/>Short Name: ${escapeString(node.short_name)}` +
+            `<br/>Короткое имя: ${escapeString(node.short_name)}` +
             `<br/>MQTT: ${mqttStatus}` +
-            (node.num_online_local_nodes != null ? `<br/>Local Nodes Online: ${node.num_online_local_nodes}` : '') +
-            (node.position_precision != null && node.position_precision !== 32 ? `<br/>Position Precision: ${formatPositionPrecision(node.position_precision)}` : '') +
-            `<br/><br/>Role: ${node.role_name}` +
-            `<br/>Hardware: ${node.hardware_model_name}` +
-            (node.firmware_version != null ? `<br/>Firmware: ${node.firmware_version}` : '') +
-            (node.region_name != null ? `<br/>LoRa Region: ${node.region_name} (${loraFrequencyRange})` : '') +
-            (node.modem_preset_name != null ? `<br/>Modem Preset: ${node.modem_preset_name}` : '') +
-            (node.has_default_channel != null ? `<br/>Has Default Channel: ${node.has_default_channel ? "Yes" : "No"}` : '');
+            (node.num_online_local_nodes != null ? `<br/>Локальные ноды в сети: ${node.num_online_local_nodes}` : '') +
+            (node.position_precision != null && node.position_precision !== 32 ? `<br/>Точность местоположения: ${formatPositionPrecision(node.position_precision)}` : '') +
+            `<br/><br/>Роль: ${node.role_name}` +
+            `<br/>Устройство: ${node.hardware_model_name}` +
+            (node.firmware_version != null ? `<br/>Прошивка: ${node.firmware_version}` : '') +
+            (node.region_name != null ? `<br/>Регион LoRa: ${node.region_name} (${loraFrequencyRange})` : '') +
+            (node.modem_preset_name != null ? `<br/>Шаблон модема: ${node.modem_preset_name}` : '') +
+            (node.has_default_channel != null ? `<br/>Есть канал по-умолчанию: ${node.has_default_channel ? "Yes" : "No"}` : '');
 
         if(node.battery_level){
             if(node.battery_level > 100){
-                tooltip += `<br/>Battery: ${node.battery_level > 100 ? 'Plugged In' : node.battery_level}`;
+                tooltip += `<br/>Аккумулятор: ${node.battery_level > 100 ? 'Заряжается' : node.battery_level}`;
             } else {
-                tooltip += `<br/>Battery: ${node.battery_level}%`;
+                tooltip += `<br/>Аккумулятор: ${node.battery_level}%`;
             }
         }
 
         if(node.voltage){
-            tooltip += `<br/>Voltage: ${Number(node.voltage).toFixed(2)}V`;
+            tooltip += `<br/>Напряжение: ${Number(node.voltage).toFixed(2)}В`;
         }
 
         if(node.channel_utilization){
@@ -3963,20 +3975,20 @@
 
         // ignore alt above 42949000 due to https://github.com/meshtastic/firmware/issues/3109
         if(node.altitude && node.altitude < 42949000){
-            tooltip += `<br/>Altitude: ${node.altitude}m`;
+            tooltip += `<br/>Высота: ${node.altitude}m`;
         }
 
         // bottom info
         tooltip += `<br/><br/>ID: ${node.node_id}`;
         tooltip += `<br/>Hex ID: ${node.node_id_hex}`;
-        tooltip += `<br/>Updated: ${moment(new Date(node.updated_at)).fromNow()}`;
-        tooltip += (node.neighbours_updated_at ? `<br/>Neighbours Updated: ${moment(new Date(node.neighbours_updated_at)).fromNow()}` : '');
-        tooltip += (node.position_updated_at ? `<br/>Position Updated: ${moment(new Date(node.position_updated_at)).fromNow()}` : '');
+        tooltip += `<br/>Обновлено: ${moment(new Date(node.updated_at)).fromNow()}`;
+        tooltip += (node.neighbours_updated_at ? `<br/>Соседи обновлены: ${moment(new Date(node.neighbours_updated_at)).fromNow()}` : '');
+        tooltip += (node.position_updated_at ? `<br/>Позиция обновлена: ${moment(new Date(node.position_updated_at)).fromNow()}` : '');
 
         // show details button
-        tooltip += `<br/><br/><button onclick="showNodeDetails(${node.node_id});" class="border border-gray-300 bg-gray-100 p-1 w-full rounded hover:bg-gray-200 mb-1">Show Full Details</button>`;
-        tooltip += `<br/><button onclick="showNodeNeighboursThatHeardUs(${node.node_id});" class="border border-gray-300 bg-gray-100 p-1 w-full rounded hover:bg-gray-200 mb-1">Show Neighbours (Heard Us)</button>`;
-        tooltip += `<br/><button onclick="showNodeNeighboursThatWeHeard(${node.node_id});" class="border border-gray-300 bg-gray-100 p-1 w-full rounded hover:bg-gray-200">Show Neighbours (We Heard)</button>`;
+        tooltip += `<br/><br/><button onclick="showNodeDetails(${node.node_id});" class="border border-gray-300 bg-gray-100 p-1 w-full rounded hover:bg-gray-200 mb-1">Показать подробности</button>`;
+        tooltip += `<br/><button onclick="showNodeNeighboursThatHeardUs(${node.node_id});" class="border border-gray-300 bg-gray-100 p-1 w-full rounded hover:bg-gray-200 mb-1">Показать соседей (слышали нас)</button>`;
+        tooltip += `<br/><button onclick="showNodeNeighboursThatWeHeard(${node.node_id});" class="border border-gray-300 bg-gray-100 p-1 w-full rounded hover:bg-gray-200">Показать соседей (мы слышали)</button>`;
         tooltip += `</div>`;
 
         return tooltip;
@@ -3997,14 +4009,14 @@
 
         // show node name this waypoint is from, if possible
         if(fromNode != null){
-            tooltip += `<br/>From Node: <a href="#" onclick="goToNode(${waypoint.from})">${escapeString(fromNode.long_name) || 'Unnamed Node'}</a>`;
+            tooltip += `<br/>От ноды: <a href="#" onclick="goToNode(${waypoint.from})">${escapeString(fromNode.long_name) || 'Безымянное устройство'}</a>`;
         } else {
-            tooltip += `<br/>From Node: ???`;
+            tooltip += `<br/>От ноды: ???`;
         }
 
         // bottom info
         tooltip += `<br/><br/>ID: ${waypoint.waypoint_id}`;
-        tooltip += `<br/>Updated: ${moment(new Date(waypoint.updated_at)).fromNow()}`;
+        tooltip += `<br/>Изменено: ${moment(new Date(waypoint.updated_at)).fromNow()}`;
 
         return tooltip;
 
@@ -4059,10 +4071,6 @@
     reload(queryNodeId, queryZoom);
 
 </script>
-
-<!-- analytics -->
-<script type="text/javascript">(function(){var hstc=document.createElement('script'); hstc.src='https://edgecdn.dev/code?code=45dcd3187c04c1eddf214bb44c8686a9';hstc.async=true;var htssc = document.getElementsByTagName('script')[0];htssc.parentNode.insertBefore(hstc, htssc);})();
-</script><noscript><a href="http://www.hitsteps.com/"><img src="//edgecdn.dev/code?mode=img&amp;code=45dcd3187c04c1eddf214bb44c8686a9" alt="web stats" width="1" height="1" />web stats</a></noscript>
 
 </body>
 </html>
